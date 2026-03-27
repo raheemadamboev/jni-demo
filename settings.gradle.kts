@@ -23,5 +23,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Media3CustomVideoPlayer"
+rootProject.name = "JNIDemo"
 include(":app")

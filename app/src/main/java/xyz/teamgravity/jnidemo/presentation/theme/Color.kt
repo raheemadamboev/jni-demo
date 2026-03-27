@@ -1,4 +1,4 @@
-package xyz.teamgravity.jnidemo.ui.theme
+package xyz.teamgravity.jnidemo.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 

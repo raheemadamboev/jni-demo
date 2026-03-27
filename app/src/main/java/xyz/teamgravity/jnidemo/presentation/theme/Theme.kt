@@ -1,4 +1,4 @@
-package xyz.teamgravity.jnidemo.ui.theme
+package xyz.teamgravity.jnidemo.presentation.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

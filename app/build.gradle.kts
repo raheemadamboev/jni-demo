@@ -39,6 +39,12 @@ android {
     buildFeatures {
         compose = true
     }
+
+    externalNativeBuild {
+        cmake {
+            path("CMakeLists.txt")
+        }
+    }
 }
 
 dependencies {
