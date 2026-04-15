@@ -66,6 +66,9 @@ dependencies {
 
     // core
     implementation(libs.core)
+
+    // timber
+    implementation(libs.timber)
 }
 
 tasks.withType<KotlinCompile>().configureEach {

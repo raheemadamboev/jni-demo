@@ -1,13 +1,14 @@
 package xyz.teamgravity.jnidemo.presentation.activity
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
+import timber.log.Timber
+import xyz.teamgravity.jnidemo.core.util.manager.LoanManager
 import xyz.teamgravity.jnidemo.core.util.manager.MathManager
 import xyz.teamgravity.jnidemo.presentation.theme.JNIDemoTheme
 
@@ -17,8 +18,11 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         MathManager.sayHi()
-        val manager = MathManager()
-        Log.d("MathManager", manager.multiply(2.0, 2.5).toString())
+        val math = MathManager()
+        Timber.d(math.multiply(2.0, 2.5).toString())
+
+        val extraPay = LoanManager.calculateExtra(100.0)
+        Timber.d(extraPay.toString())
 
         setContent {
             JNIDemoTheme {
