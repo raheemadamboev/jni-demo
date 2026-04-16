@@ -22,8 +22,8 @@ class MainActivity : ComponentActivity() {
 
 //        mathManager()
 //        loanManager()
-//        overloadSample()
-        overrideSample()
+        overloadSample()
+//        overrideSample()
 
         setContent {
             JNIDemoTheme {
@@ -53,6 +53,12 @@ class MainActivity : ComponentActivity() {
         Timber.d(sample.add(1.0, 2.0).toString())
         Timber.d(sample.add(1.0, "5.5").toString())
         Timber.d(sample.add(1.0, 7.0, 3.0).toString())
+        Timber.d(sample.minus(5.0).toString())
+        Timber.d(sample.minus(5.0, 2.7).toString())
+        Timber.d(sample.multiply(5.2).toString())
+        Timber.d(sample.multiply(doubleArrayOf(2.3, 5.0, 5.2)).toList().toString())
+        Timber.d(sample.multiply(2.3, "Ecoboost").toString())
+        Timber.d(sample.multiply(sample, sample).toString())
     }
 
     private fun overrideSample() {

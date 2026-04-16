@@ -31,6 +31,46 @@ JNIEXPORT jdouble JNICALL Java_xyz_teamgravity_jnidemo_core_sample_OverloadSampl
 JNIEXPORT jdouble JNICALL Java_xyz_teamgravity_jnidemo_core_sample_OverloadSample_add__DLjava_lang_String_2
   (JNIEnv *, jobject, jdouble, jstring);
 
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_sample_OverloadSample
+ * Method:    minus
+ * Signature: (D)D
+ */
+JNIEXPORT jdouble JNICALL Java_xyz_teamgravity_jnidemo_core_sample_OverloadSample_minus
+  (JNIEnv *, jobject, jdouble);
+
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_sample_OverloadSample
+ * Method:    multiply
+ * Signature: (D)D
+ */
+JNIEXPORT jdouble JNICALL Java_xyz_teamgravity_jnidemo_core_sample_OverloadSample_multiply__D
+  (JNIEnv *, jobject, jdouble);
+
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_sample_OverloadSample
+ * Method:    multiply
+ * Signature: ([D)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_xyz_teamgravity_jnidemo_core_sample_OverloadSample_multiply___3D
+  (JNIEnv *, jobject, jdoubleArray);
+
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_sample_OverloadSample
+ * Method:    multiply
+ * Signature: (DLjava/lang/String;)D
+ */
+JNIEXPORT jdouble JNICALL Java_xyz_teamgravity_jnidemo_core_sample_OverloadSample_multiply__DLjava_lang_String_2
+  (JNIEnv *, jobject, jdouble, jstring);
+
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_sample_OverloadSample
+ * Method:    multiply
+ * Signature: (Lxyz/teamgravity/jnidemo/core/sample/OverloadSample;Lxyz/teamgravity/jnidemo/core/sample/OverloadSample;)V
+ */
+JNIEXPORT void JNICALL Java_xyz_teamgravity_jnidemo_core_sample_OverloadSample_multiply__Lxyz_teamgravity_jnidemo_core_sample_OverloadSample_2Lxyz_teamgravity_jnidemo_core_sample_OverloadSample_2
+  (JNIEnv *, jobject, jobject, jobject);
+
 #ifdef __cplusplus
 }
 #endif
