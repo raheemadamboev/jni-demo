@@ -18,5 +18,6 @@ target_include_directories(child PRIVATE src/main/jni)
 
 find_library(log-lib log)
 target_link_libraries(math_manager ${log-lib})
+target_link_libraries(overload_sample ${log-lib})
 target_link_libraries(parent ${log-lib})
 target_link_libraries(child ${log-lib})

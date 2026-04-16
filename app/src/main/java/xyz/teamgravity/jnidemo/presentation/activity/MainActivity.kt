@@ -58,7 +58,11 @@ class MainActivity : ComponentActivity() {
         Timber.d(sample.multiply(5.2).toString())
         Timber.d(sample.multiply(doubleArrayOf(2.3, 5.0, 5.2)).toList().toString())
         Timber.d(sample.multiply(2.3, "Ecoboost").toString())
-        Timber.d(sample.multiply(sample, sample).toString())
+        sample.multiply(sample, sample)
+        sample.divide_me(5.0)
+        sample.divide_me(5)
+        sample.hello(5.0)
+        OverloadSample.hello(5)
     }
 
     private fun overrideSample() {

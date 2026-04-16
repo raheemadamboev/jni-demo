@@ -1,11 +1,6 @@
 #include "xyz_teamgravity_jnidemo_core_util_manager_MathManager.h"
 #include <android/log.h>
 
-/*
- * Class:     xyz_teamgravity_jnidemo_core_util_manager_MathManager
- * Method:    sayHi
- * Signature: ()V
- */
 extern "C"
 JNIEXPORT void JNICALL
 Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_sayHi(JNIEnv *env, jclass clazz) {

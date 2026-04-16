@@ -29,4 +29,12 @@ public class OverloadSample {
     public native double multiply(double a, String b);
 
     public native void multiply(OverloadSample a, OverloadSample b);
+
+    public native void divide_me(double a);
+
+    public native void divide_me(int a);
+
+    public native void hello(double a);
+
+    public static native void hello(int a);
 }

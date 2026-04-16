@@ -71,6 +71,38 @@ JNIEXPORT jdouble JNICALL Java_xyz_teamgravity_jnidemo_core_sample_OverloadSampl
 JNIEXPORT void JNICALL Java_xyz_teamgravity_jnidemo_core_sample_OverloadSample_multiply__Lxyz_teamgravity_jnidemo_core_sample_OverloadSample_2Lxyz_teamgravity_jnidemo_core_sample_OverloadSample_2
   (JNIEnv *, jobject, jobject, jobject);
 
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_sample_OverloadSample
+ * Method:    divide_me
+ * Signature: (D)V
+ */
+JNIEXPORT void JNICALL Java_xyz_teamgravity_jnidemo_core_sample_OverloadSample_divide_1me__D
+  (JNIEnv *, jobject, jdouble);
+
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_sample_OverloadSample
+ * Method:    divide_me
+ * Signature: (I)V
+ */
+JNIEXPORT void JNICALL Java_xyz_teamgravity_jnidemo_core_sample_OverloadSample_divide_1me__I
+  (JNIEnv *, jobject, jint);
+
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_sample_OverloadSample
+ * Method:    hello
+ * Signature: (D)V
+ */
+JNIEXPORT void JNICALL Java_xyz_teamgravity_jnidemo_core_sample_OverloadSample_hello__D
+  (JNIEnv *, jobject, jdouble);
+
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_sample_OverloadSample
+ * Method:    hello
+ * Signature: (I)V
+ */
+JNIEXPORT void JNICALL Java_xyz_teamgravity_jnidemo_core_sample_OverloadSample_hello__I
+  (JNIEnv *, jclass, jint);
+
 #ifdef __cplusplus
 }
 #endif
