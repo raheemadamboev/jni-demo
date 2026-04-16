@@ -1,5 +1,4 @@
 #include "xyz_teamgravity_jnidemo_core_util_manager_MathManager.h"
-#include <iostream>
 #include <android/log.h>
 
 /*

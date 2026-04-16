@@ -1,5 +1,5 @@
-#include <string>
 #include "xyz_teamgravity_jnidemo_core_sample_OverloadSample.h"
+#include <string>
 
 extern "C"
 JNIEXPORT jdouble JNICALL
