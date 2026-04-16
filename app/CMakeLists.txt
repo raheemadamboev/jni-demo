@@ -6,10 +6,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_library(math_manager SHARED src/main/jni/MathManager.cpp)
 add_library(loan_manager SHARED src/main/jni/LoanManager.cpp)
+add_library(overload_sample SHARED src/main/jni/OverloadSample.cpp)
 
 target_include_directories(math_manager PRIVATE src/main/jni/)
 target_include_directories(loan_manager PRIVATE src/main/jni/)
+target_include_directories(overload_sample PRIVATE src/main/jni)
 
 find_library(log-lib log)
 target_link_libraries(math_manager ${log-lib})
-target_link_libraries(loan_manager ${log-lib})

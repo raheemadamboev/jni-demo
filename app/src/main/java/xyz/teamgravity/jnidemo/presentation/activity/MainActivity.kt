@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import timber.log.Timber
+import xyz.teamgravity.jnidemo.core.sample.OverloadSample
 import xyz.teamgravity.jnidemo.core.util.manager.LoanManager
 import xyz.teamgravity.jnidemo.core.util.manager.MathManager
 import xyz.teamgravity.jnidemo.presentation.theme.JNIDemoTheme
@@ -17,12 +18,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        MathManager.sayHi()
-        val math = MathManager()
-        Timber.d(math.multiply(2.0, 2.5).toString())
-
-        val extraPay = LoanManager.calculateExtra(100.0)
-        Timber.d(extraPay.toString())
+        mathManager()
+        loanManager()
+        overloadSample()
 
         setContent {
             JNIDemoTheme {
@@ -33,5 +31,24 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    private fun mathManager() {
+        MathManager.sayHi()
+        val math = MathManager()
+        Timber.d(math.multiply(2.0, 2.5).toString())
+    }
+
+    private fun loanManager() {
+        val extraPay = LoanManager.calculateExtra(100.0)
+        Timber.d(extraPay.toString())
+    }
+
+    private fun overloadSample() {
+        val sample = OverloadSample()
+        Timber.d(sample.add(1.0).toString())
+        Timber.d(sample.add(1.0, 2.0).toString())
+        Timber.d(sample.add(1.0, "5.5").toString())
+        Timber.d(sample.add(1.0, 7.0, 3.0).toString())
     }
 }
