@@ -47,6 +47,7 @@ class MainActivity : ComponentActivity() {
         math.sum(doubleArrayOf(1.0, 5.0, 6.0, 4.0, 5.0)).log()
         math.squareOf(doubleArrayOf(2.0, 7.0, 5.0)).toList().log()
         math.ones(5, 9).contentDeepToString().log()
+        math.ones(arrayOf(doubleArrayOf())).contentDeepToString().log()
     }
 
     private fun loanManager() {

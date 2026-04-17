@@ -68,8 +68,16 @@ JNIEXPORT jdoubleArray JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_Ma
  * Method:    ones
  * Signature: (II)[[D
  */
-JNIEXPORT jobjectArray JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_ones
+JNIEXPORT jobjectArray JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_ones__II
   (JNIEnv *, jobject, jint, jint);
+
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_util_manager_MathManager
+ * Method:    ones
+ * Signature: ([[D)[[D
+ */
+JNIEXPORT jobjectArray JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_ones___3_3D
+  (JNIEnv *, jobject, jobjectArray);
 
 #ifdef __cplusplus
 }

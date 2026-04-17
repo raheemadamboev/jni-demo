@@ -28,4 +28,8 @@ public class MathManager {
             final int rows,
             final int columns
     );
+
+    public native double[][] ones(
+            final double[][] value
+    );
 }

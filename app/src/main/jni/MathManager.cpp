@@ -78,7 +78,7 @@ Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_squareOf(JNIEnv *env,
 
 extern "C"
 JNIEXPORT jobjectArray JNICALL
-Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_ones(JNIEnv *env, jobject, jint rows, jint columns) {
+Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_ones__II(JNIEnv *env, jobject, jint rows, jint columns) {
     jclass object_class = env->FindClass("[D");
     jobjectArray object_array = env->NewObjectArray(rows, object_class, nullptr);
 
@@ -93,4 +93,10 @@ Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_ones(JNIEnv *env, job
     }
 
     return object_array;
+}
+
+extern "C"
+JNIEXPORT jobjectArray JNICALL
+Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_ones___3_3D(JNIEnv *env, jobject MathManager, jobjectArray) {
+    return Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_ones__II(env, MathManager, 3, 4);
 }
