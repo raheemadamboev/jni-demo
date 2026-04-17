@@ -18,7 +18,7 @@ extern "C"
 JNIEXPORT jdouble JNICALL
 Java_xyz_teamgravity_jnidemo_core_sample_OverloadSample_add__DLjava_lang_String_2(JNIEnv *env, jobject, jdouble a, jstring b) {
     const char *bStr = env->GetStringUTFChars(b, nullptr);
-    double bDouble = std::stod(bStr);
+    jdouble bDouble = std::stod(bStr);
     env->ReleaseStringUTFChars(b, bStr);
     return a + bDouble;
 }

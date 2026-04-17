@@ -20,9 +20,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-//        mathManager()
+        mathManager()
 //        loanManager()
-        overloadSample()
+//        overloadSample()
 //        overrideSample()
 
         setContent {
@@ -40,6 +40,8 @@ class MainActivity : ComponentActivity() {
         MathManager.sayHi()
         val math = MathManager()
         Timber.d(math.multiply(2.0, 2.5).toString())
+        Timber.d(math.isOdd(10).toString())
+        Timber.d(math.damage(100).toString())
     }
 
     private fun loanManager() {

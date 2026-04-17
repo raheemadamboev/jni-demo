@@ -9,4 +9,8 @@ public class MathManager {
     public native static void sayHi();
 
     public native double multiply(double a, double b);
+
+    public native boolean isOdd(int a);
+
+    public native float damage(long a);
 }

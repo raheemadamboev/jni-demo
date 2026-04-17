@@ -2,7 +2,8 @@
 #include <jni.h>
 /* Header for class xyz_teamgravity_jnidemo_core_util_manager_MathManager */
 
-#ifndef Included_xyz_teamgravity_jnidemo_core_util_manager_MathManager
+#ifndef _Included_xyz_teamgravity_jnidemo_core_util_manager_MathManager
+#define _Included_xyz_teamgravity_jnidemo_core_util_manager_MathManager
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -12,7 +13,7 @@ extern "C" {
  * Signature: ()V
  */
 JNIEXPORT void JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_sayHi
-        (JNIEnv *, jclass);
+  (JNIEnv *, jclass);
 
 /*
  * Class:     xyz_teamgravity_jnidemo_core_util_manager_MathManager
@@ -20,7 +21,23 @@ JNIEXPORT void JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathManage
  * Signature: (DD)D
  */
 JNIEXPORT jdouble JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_multiply
-        (JNIEnv *, jobject, jdouble, jdouble);
+  (JNIEnv *, jobject, jdouble, jdouble);
+
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_util_manager_MathManager
+ * Method:    isOdd
+ * Signature: (I)Z
+ */
+JNIEXPORT jboolean JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_isOdd
+  (JNIEnv *, jobject, jint);
+
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_util_manager_MathManager
+ * Method:    damage
+ * Signature: (J)F
+ */
+JNIEXPORT jfloat JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_damage
+  (JNIEnv *, jobject, jlong);
 
 #ifdef __cplusplus
 }
