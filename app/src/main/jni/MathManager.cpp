@@ -30,7 +30,7 @@ Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_damage(JNIEnv *, jobj
 extern "C"
 JNIEXPORT jdoubleArray JNICALL
 Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_linearSpace(JNIEnv *env, jobject, jdouble start, jdouble end, jint number) {
-    jdouble c_array[number];
+    auto *c_array = new jdouble[number];
     jdouble dx = (end - start) / (number - 1.0);
     for (int i = 0; i < number; ++i) {
         c_array[i] = start + (i * dx);
@@ -38,6 +38,8 @@ Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_linearSpace(JNIEnv *e
 
     jdoubleArray result = env->NewDoubleArray(number);
     env->SetDoubleArrayRegion(result, 0, number, c_array);
+
+    delete[] c_array;
 
     return result;
 }
