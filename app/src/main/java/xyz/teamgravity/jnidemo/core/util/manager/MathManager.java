@@ -8,9 +8,19 @@ public class MathManager {
 
     public native static void sayHi();
 
-    public native double multiply(double a, double b);
+    public native double multiply(final double a, final double b);
 
-    public native boolean isOdd(int a);
+    public native boolean isOdd(final int a);
 
-    public native float damage(long a);
+    public native float damage(final long a);
+
+    public native double[] linearSpace(
+            final double start,
+            final double end,
+            final int number
+    );
+
+    public native double sum(final double[] values);
+
+    public native double[] squareOf(final double[] values);
 }

@@ -7,7 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
-import timber.log.Timber
+import xyz.teamgravity.jnidemo.core.extension.log
 import xyz.teamgravity.jnidemo.core.sample.OverloadSample
 import xyz.teamgravity.jnidemo.core.sample.override.Child
 import xyz.teamgravity.jnidemo.core.sample.override.Parent
@@ -39,27 +39,29 @@ class MainActivity : ComponentActivity() {
     private fun mathManager() {
         MathManager.sayHi()
         val math = MathManager()
-        Timber.d(math.multiply(2.0, 2.5).toString())
-        Timber.d(math.isOdd(10).toString())
-        Timber.d(math.damage(100).toString())
+        math.multiply(2.0, 2.5).log()
+        math.isOdd(10).log()
+        math.damage(100).log()
+        math.linearSpace(0.0, 5.0, 5).toList().log()
+        math.sum(doubleArrayOf(1.0, 5.0, 6.0, 4.0, 5.0)).log()
+        math.squareOf(doubleArrayOf(2.0, 7.0, 5.0)).toList().log()
     }
 
     private fun loanManager() {
-        val extraPay = LoanManager.calculateExtra(100.0)
-        Timber.d(extraPay.toString())
+        LoanManager.calculateExtra(100.0).log()
     }
 
     private fun overloadSample() {
         val sample = OverloadSample()
-        Timber.d(sample.add(1.0).toString())
-        Timber.d(sample.add(1.0, 2.0).toString())
-        Timber.d(sample.add(1.0, "5.5").toString())
-        Timber.d(sample.add(1.0, 7.0, 3.0).toString())
-        Timber.d(sample.minus(5.0).toString())
-        Timber.d(sample.minus(5.0, 2.7).toString())
-        Timber.d(sample.multiply(5.2).toString())
-        Timber.d(sample.multiply(doubleArrayOf(2.3, 5.0, 5.2)).toList().toString())
-        Timber.d(sample.multiply(2.3, "Ecoboost").toString())
+        sample.add(1.0).log()
+        sample.add(1.0, 2.0).log()
+        sample.add(1.0, "5.5").log()
+        sample.add(1.0, 7.0, 3.0).log()
+        sample.minus(5.0).log()
+        sample.minus(5.0, 2.7).log()
+        sample.multiply(5.2).log()
+        sample.multiply(doubleArrayOf(2.3, 5.0, 5.2)).toList().log()
+        sample.multiply(2.3, "Ecoboost").log()
         sample.multiply(sample, sample)
         sample.divide_me(5.0)
         sample.divide_me(5)
@@ -69,11 +71,11 @@ class MainActivity : ComponentActivity() {
 
     private fun overrideSample() {
         val parent = Parent()
-        Timber.d(parent.mustang().toString())
-        Timber.d(parent.malibu().toString())
+        parent.mustang().log()
+        parent.malibu().log()
 
         val child = Child()
-        Timber.d(child.mustang().toString())
-        Timber.d(child.malibu().toString())
+        child.mustang().log()
+        child.malibu().log()
     }
 }

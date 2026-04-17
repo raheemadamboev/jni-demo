@@ -39,6 +39,30 @@ JNIEXPORT jboolean JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathMa
 JNIEXPORT jfloat JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_damage
   (JNIEnv *, jobject, jlong);
 
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_util_manager_MathManager
+ * Method:    linearSpace
+ * Signature: (DDI)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_linearSpace
+  (JNIEnv *, jobject, jdouble, jdouble, jint);
+
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_util_manager_MathManager
+ * Method:    sum
+ * Signature: ([D)D
+ */
+JNIEXPORT jdouble JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_sum
+  (JNIEnv *, jobject, jdoubleArray);
+
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_util_manager_MathManager
+ * Method:    squareOf
+ * Signature: ([D)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_squareOf
+  (JNIEnv *, jobject, jdoubleArray);
+
 #ifdef __cplusplus
 }
 #endif
