@@ -14,6 +14,7 @@ import xyz.teamgravity.jnidemo.core.sample.override.Parent
 import xyz.teamgravity.jnidemo.core.util.manager.LoanManager
 import xyz.teamgravity.jnidemo.core.util.manager.MathManager
 import xyz.teamgravity.jnidemo.presentation.theme.JNIDemoTheme
+import java.util.Arrays
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +46,7 @@ class MainActivity : ComponentActivity() {
         math.linearSpace(0.0, 5.0, 1_000_000).toList().log()
         math.sum(doubleArrayOf(1.0, 5.0, 6.0, 4.0, 5.0)).log()
         math.squareOf(doubleArrayOf(2.0, 7.0, 5.0)).toList().log()
+        math.ones(5, 9).contentDeepToString().log()
     }
 
     private fun loanManager() {

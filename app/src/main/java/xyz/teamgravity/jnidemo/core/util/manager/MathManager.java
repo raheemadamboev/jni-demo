@@ -23,4 +23,9 @@ public class MathManager {
     public native double sum(final double[] values);
 
     public native double[] squareOf(final double[] values);
+
+    public native double[][] ones(
+            final int rows,
+            final int columns
+    );
 }

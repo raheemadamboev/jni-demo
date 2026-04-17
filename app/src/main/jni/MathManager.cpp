@@ -32,7 +32,7 @@ JNIEXPORT jdoubleArray JNICALL
 Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_linearSpace(JNIEnv *env, jobject, jdouble start, jdouble end, jint number) {
     auto *c_array = new jdouble[number];
     jdouble dx = (end - start) / (number - 1.0);
-    for (int i = 0; i < number; ++i) {
+    for (int i = 0; i < number; i++) {
         c_array[i] = start + (i * dx);
     }
 
@@ -66,7 +66,7 @@ Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_squareOf(JNIEnv *env,
     jdouble c_array[length];
     env->GetDoubleArrayRegion(values, 0, length, c_array);
 
-    for (int i = 0; i < length; ++i) {
+    for (int i = 0; i < length; i++) {
         c_array[i] *= c_array[i];
     }
 
@@ -74,4 +74,23 @@ Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_squareOf(JNIEnv *env,
     env->SetDoubleArrayRegion(result, 0, length, c_array);
 
     return result;
+}
+
+extern "C"
+JNIEXPORT jobjectArray JNICALL
+Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_ones(JNIEnv *env, jobject, jint rows, jint columns) {
+    jclass object_class = env->FindClass("[D");
+    jobjectArray object_array = env->NewObjectArray(rows, object_class, nullptr);
+
+    for (int rowIndex = 0; rowIndex < rows; rowIndex++) {
+        jdoubleArray columns_array = env->NewDoubleArray(columns);
+        jdouble c_array[columns];
+        for (int columnIndex = 0; columnIndex < columns; columnIndex++) {
+            c_array[columnIndex] = 1.0;
+        }
+        env->SetDoubleArrayRegion(columns_array, 0, columns, c_array);
+        env->SetObjectArrayElement(object_array, rowIndex, columns_array);
+    }
+
+    return object_array;
 }

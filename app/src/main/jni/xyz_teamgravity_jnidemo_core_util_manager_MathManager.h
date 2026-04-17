@@ -63,6 +63,14 @@ JNIEXPORT jdouble JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathMan
 JNIEXPORT jdoubleArray JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_squareOf
   (JNIEnv *, jobject, jdoubleArray);
 
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_util_manager_MathManager
+ * Method:    ones
+ * Signature: (II)[[D
+ */
+JNIEXPORT jobjectArray JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_ones
+  (JNIEnv *, jobject, jint, jint);
+
 #ifdef __cplusplus
 }
 #endif
