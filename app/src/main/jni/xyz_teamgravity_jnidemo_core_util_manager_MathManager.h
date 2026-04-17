@@ -79,6 +79,14 @@ JNIEXPORT jobjectArray JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_Ma
 JNIEXPORT jobjectArray JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_ones___3_3D
   (JNIEnv *, jobject, jobjectArray);
 
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_util_manager_MathManager
+ * Method:    max
+ * Signature: ([[D)D
+ */
+JNIEXPORT jdouble JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_max
+  (JNIEnv *, jobject, jobjectArray);
+
 #ifdef __cplusplus
 }
 #endif

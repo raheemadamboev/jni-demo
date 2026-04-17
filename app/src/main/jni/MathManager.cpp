@@ -1,5 +1,6 @@
 #include "xyz_teamgravity_jnidemo_core_util_manager_MathManager.h"
 #include <android/log.h>
+#include <limits>
 
 extern "C"
 JNIEXPORT void JNICALL
@@ -32,7 +33,7 @@ JNIEXPORT jdoubleArray JNICALL
 Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_linearSpace(JNIEnv *env, jobject, jdouble start, jdouble end, jint number) {
     auto *c_array = new jdouble[number];
     jdouble dx = (end - start) / (number - 1.0);
-    for (int i = 0; i < number; i++) {
+    for (jint i = 0; i < number; i++) {
         c_array[i] = start + (i * dx);
     }
 
@@ -52,7 +53,7 @@ Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_sum(JNIEnv *env, jobj
     env->GetDoubleArrayRegion(values, 0, length, c_array);
 
     jdouble sum = 0.0;
-    for (int i = 0; i < length; i++) {
+    for (jint i = 0; i < length; i++) {
         sum += c_array[i];
     }
 
@@ -66,7 +67,7 @@ Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_squareOf(JNIEnv *env,
     jdouble c_array[length];
     env->GetDoubleArrayRegion(values, 0, length, c_array);
 
-    for (int i = 0; i < length; i++) {
+    for (jint i = 0; i < length; i++) {
         c_array[i] *= c_array[i];
     }
 
@@ -82,10 +83,10 @@ Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_ones__II(JNIEnv *env,
     jclass object_class = env->FindClass("[D");
     jobjectArray object_array = env->NewObjectArray(rows, object_class, nullptr);
 
-    for (int rowIndex = 0; rowIndex < rows; rowIndex++) {
+    for (jint rowIndex = 0; rowIndex < rows; rowIndex++) {
         jdoubleArray columns_array = env->NewDoubleArray(columns);
         jdouble c_array[columns];
-        for (int columnIndex = 0; columnIndex < columns; columnIndex++) {
+        for (jint columnIndex = 0; columnIndex < columns; columnIndex++) {
             c_array[columnIndex] = 1.0;
         }
         env->SetDoubleArrayRegion(columns_array, 0, columns, c_array);
@@ -99,4 +100,44 @@ extern "C"
 JNIEXPORT jobjectArray JNICALL
 Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_ones___3_3D(JNIEnv *env, jobject MathManager, jobjectArray) {
     return Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_ones__II(env, MathManager, 3, 4);
+}
+
+extern "C"
+JNIEXPORT jdouble JNICALL
+Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_max(JNIEnv *env, jobject, jobjectArray values) {
+    if (values == nullptr) {
+        return std::numeric_limits<jdouble>::quiet_NaN();
+    }
+
+    jint row_length = env->GetArrayLength(values);
+    if (row_length == 0) {
+        return std::numeric_limits<jdouble>::quiet_NaN();
+    }
+
+    jdouble max = -std::numeric_limits<jdouble>::infinity();
+
+    for (jint row_index = 0; row_index < row_length; row_index++) {
+        auto column_array = (jdoubleArray) (env->GetObjectArrayElement(values, row_index));
+        if (column_array == nullptr) continue;
+
+        jint column_length = env->GetArrayLength(column_array);
+        if (column_length > 0) {
+
+            jdouble *elements = env->GetDoubleArrayElements(column_array, nullptr);
+            if (elements != nullptr) {
+
+                for (jint column_index = 0; column_index < column_length; column_index++) {
+                    if (max < elements[column_index]) {
+                        max = elements[column_index];
+                    }
+                }
+
+                env->ReleaseDoubleArrayElements(column_array, elements, JNI_ABORT);
+            }
+        }
+
+        env->DeleteLocalRef(column_array);
+    }
+
+    return max;
 }

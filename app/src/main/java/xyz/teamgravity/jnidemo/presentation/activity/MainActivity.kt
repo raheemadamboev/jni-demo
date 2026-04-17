@@ -43,11 +43,12 @@ class MainActivity : ComponentActivity() {
         math.multiply(2.0, 2.5).log()
         math.isOdd(10).log()
         math.damage(100).log()
-        math.linearSpace(0.0, 5.0, 1_000_000).toList().log()
+        math.linearSpace(0.0, 5.0, 10).toList().log()
         math.sum(doubleArrayOf(1.0, 5.0, 6.0, 4.0, 5.0)).log()
         math.squareOf(doubleArrayOf(2.0, 7.0, 5.0)).toList().log()
         math.ones(5, 9).contentDeepToString().log()
         math.ones(arrayOf(doubleArrayOf())).contentDeepToString().log()
+        math.max(arrayOf(doubleArrayOf(-1.0, 7.0), doubleArrayOf(-4.0, 1.5, -0.5))).log()
     }
 
     private fun loanManager() {

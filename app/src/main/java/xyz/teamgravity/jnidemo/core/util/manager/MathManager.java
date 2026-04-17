@@ -29,7 +29,7 @@ public class MathManager {
             final int columns
     );
 
-    public native double[][] ones(
-            final double[][] value
-    );
+    public native double[][] ones(final double[][] values);
+
+    public native double max(final double[][] values);
 }
