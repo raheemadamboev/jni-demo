@@ -31,6 +31,14 @@ JNIEXPORT void JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_TextManage
 JNIEXPORT jstring JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_concat
   (JNIEnv *, jclass, jstring, jstring);
 
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_util_manager_TextManager
+ * Method:    evaluatePerson
+ * Signature: (Lxyz/teamgravity/jnidemo/data/model/PersonModel;)V
+ */
+JNIEXPORT void JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_evaluatePerson
+  (JNIEnv *, jclass, jobject);
+
 #ifdef __cplusplus
 }
 #endif

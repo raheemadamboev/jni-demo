@@ -14,6 +14,7 @@ import xyz.teamgravity.jnidemo.core.sample.override.Parent
 import xyz.teamgravity.jnidemo.core.util.manager.LoanManager
 import xyz.teamgravity.jnidemo.core.util.manager.MathManager
 import xyz.teamgravity.jnidemo.core.util.manager.TextManager
+import xyz.teamgravity.jnidemo.data.model.PersonModel
 import xyz.teamgravity.jnidemo.presentation.theme.JNIDemoTheme
 
 class MainActivity : ComponentActivity() {
@@ -88,5 +89,6 @@ class MainActivity : ComponentActivity() {
         TextManager.hello().log()
         TextManager.print("10 000 push-ups.")
         TextManager.concat("Special", " One").log()
+        TextManager.evaluatePerson(PersonModel("Raheem", 25, true, 777.777))
     }
 }
