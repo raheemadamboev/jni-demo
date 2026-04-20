@@ -56,5 +56,16 @@ Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_evaluatePerson(JNIEnv
     jdouble debt = env->GetDoubleField(person, debt_field);
     __android_log_print(ANDROID_LOG_DEBUG, "MainActivity", "%f", debt);
 
+    jfieldID status_field = env->GetStaticFieldID(person_class, "status", "Ljava/lang/String;");
+    auto status = (jstring) env->GetStaticObjectField(person_class, status_field);
+    const char *c_status = env->GetStringUTFChars(status, nullptr);
+    __android_log_print(ANDROID_LOG_DEBUG, "MainActivity", "%s", c_status);
+    env->ReleaseStringUTFChars(status, c_status);
+    env->DeleteLocalRef(status);
+
+    jfieldID budget_field = env->GetStaticFieldID(person_class, "budget", "D");
+    jdouble budget = env->GetStaticDoubleField(person_class, budget_field);
+    __android_log_print(ANDROID_LOG_DEBUG, "MainActivity", "%f", budget);
+
     env->DeleteLocalRef(person_class);
 }
