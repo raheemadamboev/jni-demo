@@ -13,18 +13,19 @@ import xyz.teamgravity.jnidemo.core.sample.override.Child
 import xyz.teamgravity.jnidemo.core.sample.override.Parent
 import xyz.teamgravity.jnidemo.core.util.manager.LoanManager
 import xyz.teamgravity.jnidemo.core.util.manager.MathManager
+import xyz.teamgravity.jnidemo.core.util.manager.TextManager
 import xyz.teamgravity.jnidemo.presentation.theme.JNIDemoTheme
-import java.util.Arrays
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        mathManager()
+//        mathManager()
 //        loanManager()
 //        overloadSample()
 //        overrideSample()
+        textManager()
 
         setContent {
             JNIDemoTheme {
@@ -81,5 +82,11 @@ class MainActivity : ComponentActivity() {
         val child = Child()
         child.mustang().log()
         child.malibu().log()
+    }
+
+    private fun textManager() {
+        TextManager.hello().log()
+        TextManager.print("10 000 push-ups.")
+        TextManager.concat("Special", " One").log()
     }
 }
