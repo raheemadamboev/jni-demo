@@ -56,16 +56,36 @@ Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_evaluatePerson(JNIEnv
     jdouble debt = env->GetDoubleField(person, debt_field);
     __android_log_print(ANDROID_LOG_DEBUG, "MainActivity", "%f", debt);
 
-    jfieldID status_field = env->GetStaticFieldID(person_class, "status", "Ljava/lang/String;");
+    jfieldID status_field = env->GetStaticFieldID(person_class, "STATUS", "Ljava/lang/String;");
     auto status = (jstring) env->GetStaticObjectField(person_class, status_field);
     const char *c_status = env->GetStringUTFChars(status, nullptr);
     __android_log_print(ANDROID_LOG_DEBUG, "MainActivity", "%s", c_status);
     env->ReleaseStringUTFChars(status, c_status);
     env->DeleteLocalRef(status);
 
-    jfieldID budget_field = env->GetStaticFieldID(person_class, "budget", "D");
+    jfieldID budget_field = env->GetStaticFieldID(person_class, "BUDGET", "D");
     jdouble budget = env->GetStaticDoubleField(person_class, budget_field);
     __android_log_print(ANDROID_LOG_DEBUG, "MainActivity", "%f", budget);
+
+    env->DeleteLocalRef(person_class);
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_divorcePerson(JNIEnv *env, jclass, jobject person) {
+    jclass person_class = env->FindClass("xyz/teamgravity/jnidemo/data/model/PersonModel");
+
+    jfieldID is_married_field = env->GetFieldID(person_class, "isMarried", "Z");
+    env->SetBooleanField(person, is_married_field, JNI_FALSE);
+
+    jfieldID status_field = env->GetStaticFieldID(person_class, "STATUS", "Ljava/lang/String;");
+    jstring status = env->NewStringUTF("Single");
+    env->SetStaticObjectField(person_class, status_field, status);
+    env->DeleteLocalRef(status);
+
+    jfieldID budget_field = env->GetStaticFieldID(person_class, "BUDGET", "D");
+    jdouble budget = env->GetStaticDoubleField(person_class, budget_field) / 2;
+    env->SetStaticDoubleField(person_class, budget_field, budget);
 
     env->DeleteLocalRef(person_class);
 }

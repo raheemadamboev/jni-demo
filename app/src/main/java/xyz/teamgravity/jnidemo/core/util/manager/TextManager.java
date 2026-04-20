@@ -15,4 +15,6 @@ public class TextManager {
     public static native String concat(final String a, final String b);
 
     public static native void evaluatePerson(final PersonModel person);
+
+    public static native void divorcePerson(final PersonModel person);
 }

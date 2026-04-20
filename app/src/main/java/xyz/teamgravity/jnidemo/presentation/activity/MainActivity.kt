@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import xyz.teamgravity.jnidemo.core.extension.log
 import xyz.teamgravity.jnidemo.core.sample.OverloadSample
@@ -89,6 +90,10 @@ class MainActivity : ComponentActivity() {
         TextManager.hello().log()
         TextManager.print("10 000 push-ups.")
         TextManager.concat("Special", " One").log()
-        TextManager.evaluatePerson(PersonModel("Raheem", 25, true, 777.777))
+
+        val person = PersonModel("Raheem", 25, true, 777.777)
+        TextManager.evaluatePerson(person)
+        TextManager.divorcePerson(person)
+        person.log()
     }
 }
