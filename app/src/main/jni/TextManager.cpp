@@ -2,6 +2,100 @@
 #include <string>
 #include <android/log.h>
 
+namespace {
+    jclass s_person_class = nullptr;
+    jfieldID s_name_field = nullptr;
+    jfieldID s_age_field = nullptr;
+    jfieldID s_is_married_field = nullptr;
+    jfieldID s_debt_field = nullptr;
+    jfieldID s_status_field = nullptr;
+    jfieldID s_budget_field = nullptr;
+}
+
+extern "C"
+JNIEXPORT jint JNICALL
+JNI_OnLoad(JavaVM *vm, void *) {
+    JNIEnv *env = nullptr;
+    if (vm->GetEnv(reinterpret_cast<void **>(&env), JNI_VERSION_1_6) != JNI_OK) {
+        __android_log_print(ANDROID_LOG_ERROR, "MainActivity", "JNI_OnLoad(): failed to get JNIEnv.");
+        return JNI_ERR;
+    }
+
+    jclass local_person_class = env->FindClass("xyz/teamgravity/jnidemo/data/model/PersonModel");
+    if (local_person_class == nullptr) {
+        __android_log_print(ANDROID_LOG_ERROR, "MainActivity", "JNI_OnLoad(): failed to find PersonModel class.");
+        return JNI_ERR;
+    }
+
+    s_person_class = static_cast<jclass>(env->NewGlobalRef(local_person_class));
+    env->DeleteLocalRef(local_person_class);
+
+    if (s_person_class == nullptr) {
+        __android_log_print(ANDROID_LOG_ERROR, "MainActivity", "JNI_OnLoad(): failed to create global ref for PersonModel.");
+        return JNI_ERR;
+    }
+
+    s_name_field = env->GetFieldID(s_person_class, "name", "Ljava/lang/String;");
+    if (s_name_field == nullptr) {
+        __android_log_print(ANDROID_LOG_ERROR, "MainActivity", "JNI_OnLoad(): failed to get name field.");
+        return JNI_ERR;
+    }
+
+    s_age_field = env->GetFieldID(s_person_class, "age", "I");
+    if (s_age_field == nullptr) {
+        __android_log_print(ANDROID_LOG_ERROR, "MainActivity", "JNI_OnLoad(): failed to get age field.");
+        return JNI_ERR;
+    }
+
+    s_is_married_field = env->GetFieldID(s_person_class, "isMarried", "Z");
+    if (s_is_married_field == nullptr) {
+        __android_log_print(ANDROID_LOG_ERROR, "MainActivity", "JNI_OnLoad(): failed to get isMarried field.");
+        return JNI_ERR;
+    }
+
+    s_debt_field = env->GetFieldID(s_person_class, "debt", "D");
+    if (s_debt_field == nullptr) {
+        __android_log_print(ANDROID_LOG_ERROR, "MainActivity", "JNI_OnLoad(): failed to get debt field.");
+        return JNI_ERR;
+    }
+
+    s_status_field = env->GetStaticFieldID(s_person_class, "STATUS", "Ljava/lang/String;");
+    if (s_status_field == nullptr) {
+        __android_log_print(ANDROID_LOG_ERROR, "MainActivity", "JNI_OnLoad(): failed to get STATUS field.");
+        return JNI_ERR;
+    }
+
+    s_budget_field = env->GetStaticFieldID(s_person_class, "BUDGET", "D");
+    if (s_budget_field == nullptr) {
+        __android_log_print(ANDROID_LOG_ERROR, "MainActivity", "JNI_OnLoad(): failed to get BUDGET field.");
+        return JNI_ERR;
+    }
+
+    return JNI_VERSION_1_6;
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+JNI_OnUnload(JavaVM *vm, void *) {
+    JNIEnv *env = nullptr;
+    if (vm->GetEnv(reinterpret_cast<void **>(&env), JNI_VERSION_1_6) != JNI_OK) {
+        return;
+    }
+
+    if (s_person_class != nullptr) {
+        env->DeleteGlobalRef(s_person_class);
+        s_person_class = nullptr;
+    }
+
+    s_person_class = nullptr;
+    s_name_field = nullptr;
+    s_age_field = nullptr;
+    s_is_married_field = nullptr;
+    s_debt_field = nullptr;
+    s_status_field = nullptr;
+    s_budget_field = nullptr;
+}
+
 extern "C"
 JNIEXPORT jstring JNICALL
 Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_hello(JNIEnv *env, jclass) {
@@ -35,57 +129,40 @@ Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_concat(JNIEnv *env, j
 extern "C"
 JNIEXPORT void JNICALL
 Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_evaluatePerson(JNIEnv *env, jclass, jobject person) {
-    jclass person_class = env->FindClass("xyz/teamgravity/jnidemo/data/model/PersonModel");
-
-    static jfieldID name_field = env->GetFieldID(person_class, "name", "Ljava/lang/String;");
-    auto name = (jstring) env->GetObjectField(person, name_field);
+    auto name = (jstring) env->GetObjectField(person, s_name_field);
     const char *c_name = env->GetStringUTFChars(name, nullptr);
     __android_log_print(ANDROID_LOG_DEBUG, "MainActivity", "%s", c_name);
     env->ReleaseStringUTFChars(name, c_name);
     env->DeleteLocalRef(name);
 
-    static jfieldID age_field = env->GetFieldID(person_class, "age", "I");
-    jint age = env->GetIntField(person, age_field);
+    jint age = env->GetIntField(person, s_age_field);
     __android_log_print(ANDROID_LOG_DEBUG, "MainActivity", "%d", age);
 
-    static jfieldID is_married_field = env->GetFieldID(person_class, "isMarried", "Z");
-    jboolean is_married = env->GetBooleanField(person, is_married_field);
+    jboolean is_married = env->GetBooleanField(person, s_is_married_field);
     __android_log_print(ANDROID_LOG_DEBUG, "MainActivity", "%s", is_married ? "true" : "false");
 
-    static jfieldID debt_field = env->GetFieldID(person_class, "debt", "D");
-    jdouble debt = env->GetDoubleField(person, debt_field);
+    jdouble debt = env->GetDoubleField(person, s_debt_field);
     __android_log_print(ANDROID_LOG_DEBUG, "MainActivity", "%f", debt);
 
-    static jfieldID status_field = env->GetStaticFieldID(person_class, "STATUS", "Ljava/lang/String;");
-    auto status = (jstring) env->GetStaticObjectField(person_class, status_field);
+    auto status = (jstring) env->GetStaticObjectField(s_person_class, s_status_field);
     const char *c_status = env->GetStringUTFChars(status, nullptr);
     __android_log_print(ANDROID_LOG_DEBUG, "MainActivity", "%s", c_status);
     env->ReleaseStringUTFChars(status, c_status);
     env->DeleteLocalRef(status);
 
-    static jfieldID budget_field = env->GetStaticFieldID(person_class, "BUDGET", "D");
-    jdouble budget = env->GetStaticDoubleField(person_class, budget_field);
+    jdouble budget = env->GetStaticDoubleField(s_person_class, s_budget_field);
     __android_log_print(ANDROID_LOG_DEBUG, "MainActivity", "%f", budget);
-
-    env->DeleteLocalRef(person_class);
 }
 
 extern "C"
 JNIEXPORT void JNICALL
 Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_divorcePerson(JNIEnv *env, jclass, jobject person) {
-    jclass person_class = env->FindClass("xyz/teamgravity/jnidemo/data/model/PersonModel");
+    env->SetBooleanField(person, s_is_married_field, JNI_FALSE);
 
-    static jfieldID is_married_field = env->GetFieldID(person_class, "isMarried", "Z");
-    env->SetBooleanField(person, is_married_field, JNI_FALSE);
-
-    static jfieldID status_field = env->GetStaticFieldID(person_class, "STATUS", "Ljava/lang/String;");
     jstring status = env->NewStringUTF("Single");
-    env->SetStaticObjectField(person_class, status_field, status);
+    env->SetStaticObjectField(s_person_class, s_status_field, status);
     env->DeleteLocalRef(status);
 
-    static jfieldID budget_field = env->GetStaticFieldID(person_class, "BUDGET", "D");
-    jdouble budget = env->GetStaticDoubleField(person_class, budget_field) / 2;
-    env->SetStaticDoubleField(person_class, budget_field, budget);
-
-    env->DeleteLocalRef(person_class);
+    jdouble budget = env->GetStaticDoubleField(s_person_class, s_budget_field) / 2;
+    env->SetStaticDoubleField(s_person_class, s_budget_field, budget);
 }
