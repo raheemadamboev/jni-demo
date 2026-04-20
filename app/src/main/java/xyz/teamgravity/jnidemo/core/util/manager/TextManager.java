@@ -17,4 +17,8 @@ public class TextManager {
     public static native void evaluatePerson(final PersonModel person);
 
     public static native void divorcePerson(final PersonModel person);
+
+    public static native void printPerson(final PersonModel person);
+
+    public static native void agePeriod(final PersonModel person);
 }

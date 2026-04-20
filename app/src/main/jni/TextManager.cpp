@@ -10,6 +10,8 @@ namespace {
     jfieldID s_debt_field = nullptr;
     jfieldID s_status_field = nullptr;
     jfieldID s_budget_field = nullptr;
+    jmethodID s_print_method = nullptr;
+    jmethodID s_age_period_method = nullptr;
 }
 
 extern "C"
@@ -71,6 +73,18 @@ JNI_OnLoad(JavaVM *vm, void *) {
         return JNI_ERR;
     }
 
+    s_print_method = env->GetMethodID(s_person_class, "print", "()V");
+    if (s_print_method == nullptr) {
+        __android_log_print(ANDROID_LOG_ERROR, "MainActivity", "JNI_OnLoad(): failed to get print method.");
+        return JNI_ERR;
+    }
+
+    s_age_period_method = env->GetMethodID(s_person_class, "agePeriod", "()Ljava/lang/String;");
+    if (s_age_period_method == nullptr) {
+        __android_log_print(ANDROID_LOG_ERROR, "MainActivity", "JNI_OnLoad(): failed to get agePeriod method.");
+        return JNI_ERR;
+    }
+
     return JNI_VERSION_1_6;
 }
 
@@ -94,6 +108,8 @@ JNI_OnUnload(JavaVM *vm, void *) {
     s_debt_field = nullptr;
     s_status_field = nullptr;
     s_budget_field = nullptr;
+    s_print_method = nullptr;
+    s_age_period_method = nullptr;
 }
 
 extern "C"
@@ -165,4 +181,21 @@ Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_divorcePerson(JNIEnv 
 
     jdouble budget = env->GetStaticDoubleField(s_person_class, s_budget_field) / 2;
     env->SetStaticDoubleField(s_person_class, s_budget_field, budget);
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_printPerson(JNIEnv *env, jclass, jobject person) {
+    env->CallVoidMethod(person, s_print_method);
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_agePeriod(JNIEnv *env, jclass, jobject person) {
+    auto age_period = (jstring) env->CallObjectMethod(person, s_age_period_method);
+    const char *c_age_period = env->GetStringUTFChars(age_period, nullptr);
+    __android_log_print(ANDROID_LOG_DEBUG, "MainActivity", "%s", c_age_period);
+
+    env->ReleaseStringUTFChars(age_period, c_age_period);
+    env->DeleteLocalRef(age_period);
 }

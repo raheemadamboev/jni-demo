@@ -47,6 +47,22 @@ JNIEXPORT void JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_TextManage
 JNIEXPORT void JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_divorcePerson
   (JNIEnv *, jclass, jobject);
 
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_util_manager_TextManager
+ * Method:    printPerson
+ * Signature: (Lxyz/teamgravity/jnidemo/data/model/PersonModel;)V
+ */
+JNIEXPORT void JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_printPerson
+  (JNIEnv *, jclass, jobject);
+
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_util_manager_TextManager
+ * Method:    agePeriod
+ * Signature: (Lxyz/teamgravity/jnidemo/data/model/PersonModel;)V
+ */
+JNIEXPORT void JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_agePeriod
+  (JNIEnv *, jclass, jobject);
+
 #ifdef __cplusplus
 }
 #endif

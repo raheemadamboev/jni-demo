@@ -1,7 +1,5 @@
 package xyz.teamgravity.jnidemo.data.model;
 
-import androidx.annotation.NonNull;
-
 public class PersonModel {
 
     private final String name;
@@ -21,7 +19,24 @@ public class PersonModel {
         BUDGET -= debt;
     }
 
-    @NonNull
+    public void print() {
+        System.out.println(this);
+    }
+
+    public String agePeriod() {
+        if (age > 50) {
+            return "Elder";
+        } else if (age > 30) {
+            return "Midlife";
+        } else if (age > 20) {
+            return "Prime";
+        } else if (age > 10) {
+            return "Adolescence";
+        } else {
+            return "Kid";
+        }
+    }
+
     @Override
     public String toString() {
         return "PersonModel{" +

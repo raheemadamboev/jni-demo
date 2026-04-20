@@ -6,7 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import xyz.teamgravity.jnidemo.core.extension.log
 import xyz.teamgravity.jnidemo.core.sample.OverloadSample
@@ -95,5 +94,8 @@ class MainActivity : ComponentActivity() {
         TextManager.evaluatePerson(person)
         TextManager.divorcePerson(person)
         person.log()
+
+        TextManager.printPerson(person)
+        TextManager.agePeriod(person)
     }
 }
