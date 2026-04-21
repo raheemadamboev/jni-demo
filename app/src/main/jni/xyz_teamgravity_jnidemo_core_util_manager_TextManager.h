@@ -87,6 +87,22 @@ JNIEXPORT void JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_TextManage
 JNIEXPORT jlong JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_freeMemory
   (JNIEnv *, jclass);
 
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_util_manager_TextManager
+ * Method:    createPerson
+ * Signature: (Ljava/lang/String;IZD)Lxyz/teamgravity/jnidemo/data/model/PersonModel;
+ */
+JNIEXPORT jobject JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_createPerson__Ljava_lang_String_2IZD
+  (JNIEnv *, jclass, jstring, jint, jboolean, jdouble);
+
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_util_manager_TextManager
+ * Method:    createPerson
+ * Signature: (Ljava/lang/String;)Lxyz/teamgravity/jnidemo/data/model/PersonModel;
+ */
+JNIEXPORT jobject JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_createPerson__Ljava_lang_String_2
+  (JNIEnv *, jclass, jstring);
+
 #ifdef __cplusplus
 }
 #endif

@@ -22,11 +22,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        mathManager()
+//        mathManager()
 //        loanManager()
 //        overloadSample()
 //        overrideSample()
-//        textManager()
+        textManager()
 
         setContent {
             JNIDemoTheme {
@@ -104,5 +104,8 @@ class MainActivity : ComponentActivity() {
         TextManager.bankrupt(person)
         TextManager.evaluate(person)
         TextManager.freeMemory().log()
+
+        TextManager.createPerson("King Von", 26, true, 0.0).log()
+        TextManager.createPerson("Lil Durk").log()
     }
 }

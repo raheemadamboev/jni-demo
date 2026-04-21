@@ -19,6 +19,15 @@ public class PersonModel {
         BUDGET -= debt;
     }
 
+    public PersonModel(String name) {
+        this.name = name;
+        age = 0;
+        isMarried = false;
+        debt = 0;
+        STATUS = "Single";
+        BUDGET = 0;
+    }
+
     public void print() {
         System.out.println(this);
     }

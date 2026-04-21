@@ -27,4 +27,13 @@ public class TextManager {
     public static native void bankrupt(final PersonModel person);
 
     public static native long freeMemory();
+
+    public static native PersonModel createPerson(
+            final String name,
+            final int age,
+            final boolean isMarried,
+            final double debt
+    );
+
+    public static native PersonModel createPerson(final String name);
 }

@@ -243,3 +243,19 @@ Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_freeMemory(JNIEnv *en
 
     return free_memory / 1024 / 1024;
 }
+
+extern "C"
+JNIEXPORT jobject JNICALL
+Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_createPerson__Ljava_lang_String_2IZD(JNIEnv *env, jclass, jstring name, jint age, jboolean is_married, jdouble debt) {
+    jmethodID constructor = env->GetMethodID(s_person_class, "<init>", "(Ljava/lang/String;IZD)V");
+    jobject value = env->NewObject(s_person_class, constructor, name, age, is_married, debt);
+    return value;
+}
+
+extern "C"
+JNIEXPORT jobject JNICALL
+Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_createPerson__Ljava_lang_String_2(JNIEnv *env, jclass, jstring name) {
+    jmethodID constructor = env->GetMethodID(s_person_class, "<init>", "(Ljava/lang/String;)V");
+    jobject value = env->NewObject(s_person_class, constructor, name);
+    return value;
+}
