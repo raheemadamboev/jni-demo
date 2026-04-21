@@ -12,6 +12,8 @@ namespace {
     jfieldID s_budget_field = nullptr;
     jmethodID s_print_method = nullptr;
     jmethodID s_age_period_method = nullptr;
+    jmethodID s_evaluate_method = nullptr;
+    jmethodID s_bankrupt_method = nullptr;
 }
 
 extern "C"
@@ -85,6 +87,18 @@ JNI_OnLoad(JavaVM *vm, void *) {
         return JNI_ERR;
     }
 
+    s_evaluate_method = env->GetStaticMethodID(s_person_class, "evaluate", "(Lxyz/teamgravity/jnidemo/data/model/PersonModel;)V");
+    if (s_evaluate_method == nullptr) {
+        __android_log_print(ANDROID_LOG_ERROR, "MainActivity", "JNI_OnLoad(): failed to get evaluate method.");
+        return JNI_ERR;
+    }
+
+    s_bankrupt_method = env->GetStaticMethodID(s_person_class, "bankrupt", "(Lxyz/teamgravity/jnidemo/data/model/PersonModel;)V");
+    if (s_bankrupt_method == nullptr) {
+        __android_log_print(ANDROID_LOG_ERROR, "MainActivity", "JNI_OnLoad(): failed to get bankrupt method.");
+        return JNI_ERR;
+    }
+
     return JNI_VERSION_1_6;
 }
 
@@ -110,6 +124,8 @@ JNI_OnUnload(JavaVM *vm, void *) {
     s_budget_field = nullptr;
     s_print_method = nullptr;
     s_age_period_method = nullptr;
+    s_evaluate_method = nullptr;
+    s_bankrupt_method = nullptr;
 }
 
 extern "C"
@@ -198,4 +214,32 @@ Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_agePeriod(JNIEnv *env
 
     env->ReleaseStringUTFChars(age_period, c_age_period);
     env->DeleteLocalRef(age_period);
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_evaluate(JNIEnv *env, jclass, jobject person) {
+    env->CallStaticVoidMethod(s_person_class, s_evaluate_method, person);
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_bankrupt(JNIEnv *env, jclass, jobject person) {
+    env->CallStaticVoidMethod(s_person_class, s_bankrupt_method, person);
+}
+
+extern "C"
+JNIEXPORT jlong JNICALL
+Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_freeMemory(JNIEnv *env, jclass) {
+    jclass runtime_class = env->FindClass("java/lang/Runtime");
+    jmethodID get_runtime_method = env->GetStaticMethodID(runtime_class, "getRuntime", "()Ljava/lang/Runtime;");
+
+    jobject runtime = env->CallStaticObjectMethod(runtime_class, get_runtime_method);
+    jmethodID free_memory_method = env->GetMethodID(runtime_class, "freeMemory", "()J");
+    jlong free_memory = env->CallLongMethod(runtime, free_memory_method);
+
+    env->DeleteLocalRef(runtime);
+    env->DeleteLocalRef(runtime_class);
+
+    return free_memory / 1024 / 1024;
 }

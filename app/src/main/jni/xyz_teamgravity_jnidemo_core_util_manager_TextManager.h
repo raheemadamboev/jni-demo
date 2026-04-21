@@ -63,6 +63,30 @@ JNIEXPORT void JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_TextManage
 JNIEXPORT void JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_agePeriod
   (JNIEnv *, jclass, jobject);
 
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_util_manager_TextManager
+ * Method:    evaluate
+ * Signature: (Lxyz/teamgravity/jnidemo/data/model/PersonModel;)V
+ */
+JNIEXPORT void JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_evaluate
+  (JNIEnv *, jclass, jobject);
+
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_util_manager_TextManager
+ * Method:    bankrupt
+ * Signature: (Lxyz/teamgravity/jnidemo/data/model/PersonModel;)V
+ */
+JNIEXPORT void JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_bankrupt
+  (JNIEnv *, jclass, jobject);
+
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_util_manager_TextManager
+ * Method:    freeMemory
+ * Signature: ()J
+ */
+JNIEXPORT jlong JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_freeMemory
+  (JNIEnv *, jclass);
+
 #ifdef __cplusplus
 }
 #endif

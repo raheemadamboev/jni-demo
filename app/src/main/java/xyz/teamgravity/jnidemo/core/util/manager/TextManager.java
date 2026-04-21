@@ -21,4 +21,10 @@ public class TextManager {
     public static native void printPerson(final PersonModel person);
 
     public static native void agePeriod(final PersonModel person);
+
+    public static native void evaluate(final PersonModel person);
+
+    public static native void bankrupt(final PersonModel person);
+
+    public static native long freeMemory();
 }

@@ -5,7 +5,7 @@ public class PersonModel {
     private final String name;
     final int age;
     public final boolean isMarried;
-    protected final double debt;
+    protected double debt;
 
     private static String STATUS;
     private static double BUDGET = 500.0;
@@ -35,6 +35,15 @@ public class PersonModel {
         } else {
             return "Kid";
         }
+    }
+
+    public static void evaluate(final PersonModel person) {
+        System.out.println(person);
+    }
+
+    public static void bankrupt(final PersonModel person) {
+        BUDGET = 0;
+        person.debt = 10000.0;
     }
 
     @Override
