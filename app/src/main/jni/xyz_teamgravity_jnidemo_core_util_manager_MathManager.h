@@ -111,6 +111,22 @@ JNIEXPORT jdouble JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathMan
 JNIEXPORT jobject JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_callFunctionScaled
   (JNIEnv *, jobject, jobject);
 
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_util_manager_MathManager
+ * Method:    ai
+ * Signature: (D)D
+ */
+JNIEXPORT jdouble JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_ai
+  (JNIEnv *, jclass, jdouble);
+
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_util_manager_MathManager
+ * Method:    bi
+ * Signature: (D)D
+ */
+JNIEXPORT jdouble JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_bi
+  (JNIEnv *, jclass, jdouble);
+
 #ifdef __cplusplus
 }
 #endif

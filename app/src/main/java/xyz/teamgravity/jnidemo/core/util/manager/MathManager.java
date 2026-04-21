@@ -45,7 +45,9 @@ public class MathManager {
             final double x
     );
 
-    public native MathFunction callFunctionScaled(
-            final MathFunction function
-    );
+    public native MathFunction callFunctionScaled(final MathFunction function);
+
+    public static native double ai(double x);
+
+    public static native double bi(double x);
 }

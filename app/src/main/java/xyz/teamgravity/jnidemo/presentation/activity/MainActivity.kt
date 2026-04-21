@@ -22,11 +22,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-//        mathManager()
+        mathManager()
 //        loanManager()
 //        overloadSample()
 //        overrideSample()
-        textManager()
+//        textManager()
 
         setContent {
             JNIDemoTheme {
@@ -54,6 +54,9 @@ class MainActivity : ComponentActivity() {
         math.callValue({ it * 2 }, 75.0).log()
         math.callValueScaled({ it / 2 }, 90.0).log()
         math.callFunctionScaled { it * 78 }.value(4.0).log()
+
+        MathManager.ai(-1.1).log()
+        MathManager.bi(-1.1).log()
     }
 
     private fun loanManager() {

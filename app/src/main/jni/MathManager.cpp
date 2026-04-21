@@ -1,4 +1,6 @@
 #include "xyz_teamgravity_jnidemo_core_util_manager_MathManager.h"
+#include "third_party/gsl/include/gsl/gsl_mode.h"
+#include "third_party/gsl/include/gsl/gsl_sf_airy.h"
 #include <android/log.h>
 #include <limits>
 
@@ -170,4 +172,16 @@ Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_callFunctionScaled(JN
     jobject value = env->CallStaticObjectMethod(math_function_class, function_scaled_method, function);
     env->DeleteLocalRef(math_function_class);
     return value;
+}
+
+extern "C"
+JNIEXPORT jdouble JNICALL
+Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_ai(JNIEnv *env, jclass, jdouble x) {
+    return gsl_sf_airy_Ai(x, GSL_MODE_DEFAULT);
+}
+
+extern "C"
+JNIEXPORT jdouble JNICALL
+Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_bi(JNIEnv *env, jclass, jdouble x) {
+    return gsl_sf_airy_Bi(x, GSL_MODE_DEFAULT);
 }
