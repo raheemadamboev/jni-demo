@@ -6,7 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import xyz.teamgravity.jnidemo.core.extension.log
 import xyz.teamgravity.jnidemo.core.sample.OverloadSample
@@ -23,11 +22,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-//        mathManager()
+        mathManager()
 //        loanManager()
 //        overloadSample()
 //        overrideSample()
-        textManager()
+//        textManager()
 
         setContent {
             JNIDemoTheme {
@@ -52,6 +51,9 @@ class MainActivity : ComponentActivity() {
         math.ones(5, 9).contentDeepToString().log()
         math.ones(arrayOf(doubleArrayOf())).contentDeepToString().log()
         math.max(arrayOf(doubleArrayOf(-1.0, 7.0), doubleArrayOf(-4.0, 1.5, -0.5))).log()
+        math.callValue({ it * 2 }, 75.0).log()
+        math.callValueScaled({ it / 2 }, 90.0).log()
+        math.callFunctionScaled { it * 78 }.value(4.0).log()
     }
 
     private fun loanManager() {

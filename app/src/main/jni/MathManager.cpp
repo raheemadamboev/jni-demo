@@ -141,3 +141,33 @@ Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_max(JNIEnv *env, jobj
 
     return max;
 }
+
+extern "C"
+JNIEXPORT jdouble JNICALL
+Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_callValue(JNIEnv *env, jobject, jobject function, jdouble x) {
+    jclass math_function_class = env->FindClass("xyz/teamgravity/jnidemo/core/util/MathFunction");
+    jmethodID value_method = env->GetMethodID(math_function_class, "value", "(D)D");
+    jdouble value = env->CallDoubleMethod(function, value_method, x);
+    env->DeleteLocalRef(math_function_class);
+    return value;
+}
+
+extern "C"
+JNIEXPORT jdouble JNICALL
+Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_callValueScaled(JNIEnv *env, jobject, jobject function, jdouble x) {
+    jclass math_function_class = env->FindClass("xyz/teamgravity/jnidemo/core/util/MathFunction");
+    jmethodID value_scaled_method = env->GetMethodID(math_function_class, "valueScaled", "(D)D");
+    jdouble value = env->CallDoubleMethod(function, value_scaled_method, x);
+    env->DeleteLocalRef(math_function_class);
+    return value;
+}
+
+extern "C"
+JNIEXPORT jobject JNICALL
+Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_callFunctionScaled(JNIEnv *env, jobject, jobject function) {
+    jclass math_function_class = env->FindClass("xyz/teamgravity/jnidemo/core/util/MathFunction");
+    jmethodID function_scaled_method = env->GetStaticMethodID(math_function_class, "functionScaled", "(Lxyz/teamgravity/jnidemo/core/util/MathFunction;)Lxyz/teamgravity/jnidemo/core/util/MathFunction;");
+    jobject value = env->CallStaticObjectMethod(math_function_class, function_scaled_method, function);
+    env->DeleteLocalRef(math_function_class);
+    return value;
+}

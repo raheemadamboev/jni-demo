@@ -1,5 +1,7 @@
 package xyz.teamgravity.jnidemo.core.util.manager;
 
+import xyz.teamgravity.jnidemo.core.util.MathFunction;
+
 public class MathManager {
 
     static {
@@ -32,4 +34,18 @@ public class MathManager {
     public native double[][] ones(final double[][] values);
 
     public native double max(final double[][] values);
+
+    public native double callValue(
+            final MathFunction function,
+            final double x
+    );
+
+    public native double callValueScaled(
+            final MathFunction function,
+            final double x
+    );
+
+    public native MathFunction callFunctionScaled(
+            final MathFunction function
+    );
 }

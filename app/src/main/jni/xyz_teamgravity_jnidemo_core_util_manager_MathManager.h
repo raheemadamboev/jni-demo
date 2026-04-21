@@ -87,6 +87,30 @@ JNIEXPORT jobjectArray JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_Ma
 JNIEXPORT jdouble JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_max
   (JNIEnv *, jobject, jobjectArray);
 
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_util_manager_MathManager
+ * Method:    callValue
+ * Signature: (Lxyz/teamgravity/jnidemo/core/util/MathFunction;D)D
+ */
+JNIEXPORT jdouble JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_callValue
+  (JNIEnv *, jobject, jobject, jdouble);
+
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_util_manager_MathManager
+ * Method:    callValueScaled
+ * Signature: (Lxyz/teamgravity/jnidemo/core/util/MathFunction;D)D
+ */
+JNIEXPORT jdouble JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_callValueScaled
+  (JNIEnv *, jobject, jobject, jdouble);
+
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_util_manager_MathManager
+ * Method:    callFunctionScaled
+ * Signature: (Lxyz/teamgravity/jnidemo/core/util/MathFunction;)Lxyz/teamgravity/jnidemo/core/util/MathFunction;
+ */
+JNIEXPORT jobject JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_callFunctionScaled
+  (JNIEnv *, jobject, jobject);
+
 #ifdef __cplusplus
 }
 #endif
