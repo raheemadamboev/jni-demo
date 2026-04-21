@@ -1,3 +1,5 @@
+Build executable libraries for Android:
+
 ```cmd
 export NDK=$HOME/Library/Android/sdk/ndk/28.2.13676358
 export TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/darwin-x86_64
