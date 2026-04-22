@@ -1,6 +1,7 @@
 #include "xyz_teamgravity_jnidemo_core_util_manager_MathManager.h"
 #include "third_party/gsl/include/gsl/gsl_mode.h"
 #include "third_party/gsl/include/gsl/gsl_sf_airy.h"
+#include "third_party/gsl/include/gsl/gsl_roots.h"
 #include <android/log.h>
 #include <limits>
 
@@ -184,4 +185,15 @@ extern "C"
 JNIEXPORT jdouble JNICALL
 Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_bi(JNIEnv *env, jclass, jdouble x) {
     return gsl_sf_airy_Bi(x, GSL_MODE_DEFAULT);
+}
+
+extern "C"
+JNIEXPORT jint JNICALL
+Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_rooTestResidual(JNIEnv *env, jclass, jobject f, jobject epsabs) {
+    jclass double_class = env->FindClass("java/lang/Double");
+    jmethodID double_value_method = env->GetMethodID(double_class, "doubleValue", "()D");
+    jdouble f_value = env->CallDoubleMethod(f, double_value_method);
+    jdouble epsabs_value = env->CallDoubleMethod(epsabs, double_value_method);
+    env->DeleteLocalRef(double_class);
+    return gsl_root_test_residual(f_value, epsabs_value);
 }

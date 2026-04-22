@@ -127,6 +127,14 @@ JNIEXPORT jdouble JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathMan
 JNIEXPORT jdouble JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_bi
   (JNIEnv *, jclass, jdouble);
 
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_util_manager_MathManager
+ * Method:    rooTestResidual
+ * Signature: (Ljava/lang/Double;Ljava/lang/Double;)I
+ */
+JNIEXPORT jint JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_rooTestResidual
+  (JNIEnv *, jclass, jobject, jobject);
+
 #ifdef __cplusplus
 }
 #endif

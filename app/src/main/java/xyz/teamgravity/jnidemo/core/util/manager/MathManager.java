@@ -50,4 +50,6 @@ public class MathManager {
     public static native double ai(double x);
 
     public static native double bi(double x);
+
+    public static native int rooTestResidual(Double f, Double epsabs);
 }
