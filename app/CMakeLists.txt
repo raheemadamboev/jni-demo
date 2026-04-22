@@ -19,6 +19,7 @@ add_library(parent SHARED src/main/jni/Parent.cpp)
 add_library(child SHARED src/main/jni/Child.cpp)
 add_library(text_manager SHARED src/main/jni/TextManager.cpp)
 add_library(animal_manager SHARED src/main/jni/AnimalManager.cpp)
+add_library(file_reader SHARED src/main/jni/FileReader.cpp)
 
 target_include_directories(math_manager PRIVATE src/main/jni/ ${GSL_DIR}/include)
 target_include_directories(loan_manager PRIVATE src/main/jni/)
@@ -27,6 +28,7 @@ target_include_directories(parent PRIVATE src/main/jni)
 target_include_directories(child PRIVATE src/main/jni)
 target_include_directories(text_manager PRIVATE src/main/jni)
 target_include_directories(animal_manager PRIVATE src/main/jni)
+target_include_directories(file_reader PRIVATE src/main/jni)
 
 find_library(log-lib log)
 

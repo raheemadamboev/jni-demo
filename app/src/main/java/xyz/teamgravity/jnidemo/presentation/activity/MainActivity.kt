@@ -11,6 +11,7 @@ import xyz.teamgravity.jnidemo.core.extension.log
 import xyz.teamgravity.jnidemo.core.sample.OverloadSample
 import xyz.teamgravity.jnidemo.core.sample.override.Child
 import xyz.teamgravity.jnidemo.core.sample.override.Parent
+import xyz.teamgravity.jnidemo.core.util.FileReader
 import xyz.teamgravity.jnidemo.core.util.manager.AnimalManager
 import xyz.teamgravity.jnidemo.core.util.manager.LoanManager
 import xyz.teamgravity.jnidemo.core.util.manager.MathManager
@@ -20,6 +21,7 @@ import xyz.teamgravity.jnidemo.data.model.CatModel
 import xyz.teamgravity.jnidemo.data.model.DogModel
 import xyz.teamgravity.jnidemo.data.model.PersonModel
 import xyz.teamgravity.jnidemo.presentation.theme.JNIDemoTheme
+import java.io.File
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +33,8 @@ class MainActivity : ComponentActivity() {
 //        overloadSample()
 //        overrideSample()
 //        textManager()
-        animalManager()
+//        animalManager()
+        fileReader()
 
         setContent {
             JNIDemoTheme {
@@ -138,5 +141,26 @@ class MainActivity : ComponentActivity() {
         AnimalManager.dogSpeak(dog).log()
 
         AnimalManager.catSpeak(cat).log()
+    }
+
+    private fun fileReader() {
+        val file1 = File(filesDir, "file1.txt")
+        file1.createNewFile()
+        file1.writeText("Hello, my name is Raheem.")
+
+        FileReader(file1.absolutePath).use { reader ->
+            while (!reader.eof()) {
+                reader.next().log()
+            }
+        }
+
+        val file2 = File(filesDir, "file2.txt")
+        file2.createNewFile()
+        file2.writeText("I drive Ford Mustang GT 5.0")
+        FileReader(file2.absolutePath).use { reader ->
+            while (!reader.eof()) {
+                reader.next().log()
+            }
+        }
     }
 }
