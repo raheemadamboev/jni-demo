@@ -11,9 +11,13 @@ import xyz.teamgravity.jnidemo.core.extension.log
 import xyz.teamgravity.jnidemo.core.sample.OverloadSample
 import xyz.teamgravity.jnidemo.core.sample.override.Child
 import xyz.teamgravity.jnidemo.core.sample.override.Parent
+import xyz.teamgravity.jnidemo.core.util.manager.AnimalManager
 import xyz.teamgravity.jnidemo.core.util.manager.LoanManager
 import xyz.teamgravity.jnidemo.core.util.manager.MathManager
 import xyz.teamgravity.jnidemo.core.util.manager.TextManager
+import xyz.teamgravity.jnidemo.data.model.AnimalModel
+import xyz.teamgravity.jnidemo.data.model.CatModel
+import xyz.teamgravity.jnidemo.data.model.DogModel
 import xyz.teamgravity.jnidemo.data.model.PersonModel
 import xyz.teamgravity.jnidemo.presentation.theme.JNIDemoTheme
 
@@ -22,11 +26,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        mathManager()
+//        mathManager()
 //        loanManager()
 //        overloadSample()
 //        overrideSample()
 //        textManager()
+        animalManager()
 
         setContent {
             JNIDemoTheme {
@@ -115,5 +120,23 @@ class MainActivity : ComponentActivity() {
 
         TextManager.createPerson("King Von", 26, true, 0.0).log()
         TextManager.createPerson("Lil Durk").log()
+    }
+
+    private fun animalManager() {
+        val animal = AnimalModel()
+        val dog = DogModel()
+        val cat = CatModel()
+
+        AnimalManager.speak(animal).log()
+        AnimalManager.speak(dog).log()
+        AnimalManager.speak(cat).log()
+
+        AnimalManager.animalSpeak(animal).log()
+        AnimalManager.animalSpeak(dog).log()
+        AnimalManager.animalSpeak(cat).log()
+
+        AnimalManager.dogSpeak(dog).log()
+
+        AnimalManager.catSpeak(cat).log()
     }
 }
