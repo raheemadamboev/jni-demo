@@ -81,6 +81,8 @@ public class PersonModel {
 
         public native void printTitle();
 
+        public static native Book createBook(final PersonModel person);
+
         @Override
         public String toString() {
             return "Book{" +
@@ -104,6 +106,8 @@ public class PersonModel {
         public native void printSize();
 
         public static native void printSize(final Bag bag);
+
+        public static native Bag createBag();
 
         @Override
         public String toString() {

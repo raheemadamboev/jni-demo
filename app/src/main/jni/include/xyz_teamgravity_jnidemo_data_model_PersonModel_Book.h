@@ -15,6 +15,14 @@ extern "C" {
 JNIEXPORT void JNICALL Java_xyz_teamgravity_jnidemo_data_model_PersonModel_00024Book_printTitle
   (JNIEnv *, jobject);
 
+/*
+ * Class:     xyz_teamgravity_jnidemo_data_model_PersonModel_Book
+ * Method:    createBook
+ * Signature: (Lxyz/teamgravity/jnidemo/data/model/PersonModel;)Lxyz/teamgravity/jnidemo/data/model/PersonModel/Book;
+ */
+JNIEXPORT jobject JNICALL Java_xyz_teamgravity_jnidemo_data_model_PersonModel_00024Book_createBook
+  (JNIEnv *, jclass, jobject);
+
 #ifdef __cplusplus
 }
 #endif

@@ -177,5 +177,8 @@ class MainActivity : ComponentActivity() {
         val bag1 = PersonModel.Bag(21)
         bag1.printSize()
         PersonModel.Bag.printSize(bag1)
+
+        PersonModel.Book.createBook(person).log()
+        PersonModel.Bag.createBag().log()
     }
 }

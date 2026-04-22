@@ -23,6 +23,14 @@ JNIEXPORT void JNICALL Java_xyz_teamgravity_jnidemo_data_model_PersonModel_00024
 JNIEXPORT void JNICALL Java_xyz_teamgravity_jnidemo_data_model_PersonModel_00024Bag_printSize__Lxyz_teamgravity_jnidemo_data_model_PersonModel_00024Bag_2
   (JNIEnv *, jclass, jobject);
 
+/*
+ * Class:     xyz_teamgravity_jnidemo_data_model_PersonModel_Bag
+ * Method:    createBag
+ * Signature: ()Lxyz/teamgravity/jnidemo/data/model/PersonModel/Bag;
+ */
+JNIEXPORT jobject JNICALL Java_xyz_teamgravity_jnidemo_data_model_PersonModel_00024Bag_createBag
+  (JNIEnv *, jclass);
+
 #ifdef __cplusplus
 }
 #endif

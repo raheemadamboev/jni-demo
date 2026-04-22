@@ -3,6 +3,7 @@
 
 namespace {
     jclass s_bag_class;
+    jmethodID s_bag_constructor;
     jmethodID s_bag_to_string_method;
 }
 
@@ -29,6 +30,12 @@ JNI_OnLoad(JavaVM *vm, void *) {
         return JNI_ERR;
     }
 
+    s_bag_constructor = env->GetMethodID(s_bag_class, "<init>", "(I)V");
+    if (s_bag_constructor == nullptr) {
+        __android_log_print(ANDROID_LOG_ERROR, "MainActivity", "JNI_OnLoad(): failed to get constructor.");
+        return JNI_ERR;
+    }
+
     s_bag_to_string_method = env->GetMethodID(s_bag_class, "toString", "()Ljava/lang/String;");
     if (s_bag_to_string_method == nullptr) {
         __android_log_print(ANDROID_LOG_ERROR, "MainActivity", "JNI_OnLoad(): failed to get toString method.");
@@ -51,6 +58,7 @@ JNI_OnUnload(JavaVM *vm, void *) {
         s_bag_class = nullptr;
     }
 
+    s_bag_constructor = nullptr;
     s_bag_to_string_method = nullptr;
 }
 
@@ -72,4 +80,10 @@ Java_xyz_teamgravity_jnidemo_data_model_PersonModel_00024Bag_printSize__Lxyz_tea
     __android_log_print(ANDROID_LOG_DEBUG, "MainActivity", "%s", value_array);
     env->ReleaseStringUTFChars(value, value_array);
     env->DeleteLocalRef(value);
+}
+
+extern "C"
+JNIEXPORT jobject JNICALL
+Java_xyz_teamgravity_jnidemo_data_model_PersonModel_00024Bag_createBag(JNIEnv *env, jclass) {
+    return env->NewObject(s_bag_class, s_bag_constructor, 48);
 }
