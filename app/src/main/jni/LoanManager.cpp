@@ -1,4 +1,4 @@
-#include "xyz_teamgravity_jnidemo_core_util_manager_LoanManager.h"
+#include "include/xyz_teamgravity_jnidemo_core_util_manager_LoanManager.h"
 
 extern "C"
 JNIEXPORT jdouble JNICALL

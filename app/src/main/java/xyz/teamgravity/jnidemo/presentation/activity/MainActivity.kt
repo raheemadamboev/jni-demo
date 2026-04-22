@@ -34,7 +34,8 @@ class MainActivity : ComponentActivity() {
 //        overrideSample()
 //        textManager()
 //        animalManager()
-        fileReader()
+//        fileReader()
+        person()
 
         setContent {
             JNIDemoTheme {
@@ -162,5 +163,19 @@ class MainActivity : ComponentActivity() {
                 reader.next().log()
             }
         }
+    }
+
+    private fun person() {
+        val person = PersonModel("Raheem", 25, true, 0.0)
+
+        val book1 = person.Book("C++")
+        book1.printTitle()
+
+        val book2 = person.Book("Kotlin")
+        book2.printTitle()
+
+        val bag1 = PersonModel.Bag(21)
+        bag1.printSize()
+        PersonModel.Bag.printSize(bag1)
     }
 }

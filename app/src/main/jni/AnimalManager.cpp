@@ -1,4 +1,4 @@
-#include "xyz_teamgravity_jnidemo_core_util_manager_AnimalManager.h"
+#include "include/xyz_teamgravity_jnidemo_core_util_manager_AnimalManager.h"
 #include <android/log.h>
 
 namespace {

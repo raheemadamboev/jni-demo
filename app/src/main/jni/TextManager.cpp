@@ -1,4 +1,4 @@
-#include "xyz_teamgravity_jnidemo_core_util_manager_TextManager.h"
+#include "include/xyz_teamgravity_jnidemo_core_util_manager_TextManager.h"
 #include <string>
 #include <android/log.h>
 

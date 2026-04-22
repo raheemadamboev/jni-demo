@@ -1,4 +1,4 @@
-#include "xyz_teamgravity_jnidemo_core_util_manager_MathManager.h"
+#include "include/xyz_teamgravity_jnidemo_core_util_manager_MathManager.h"
 #include "third_party/gsl/include/gsl/gsl_mode.h"
 #include "third_party/gsl/include/gsl/gsl_sf_airy.h"
 #include "third_party/gsl/include/gsl/gsl_roots.h"

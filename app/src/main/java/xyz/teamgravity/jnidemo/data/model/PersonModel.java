@@ -66,4 +66,50 @@ public class PersonModel {
                 ", BUDGET=" + BUDGET +
                 '}';
     }
+
+    public class Book {
+
+        static {
+            System.loadLibrary("person_model_book");
+        }
+
+        final String title;
+
+        public Book(final String title) {
+            this.title = name + "'s book named " + title;
+        }
+
+        public native void printTitle();
+
+        @Override
+        public String toString() {
+            return "Book{" +
+                    "title='" + title + '\'' +
+                    '}';
+        }
+    }
+
+    public static class Bag {
+
+        static {
+            System.loadLibrary("person_model_bag");
+        }
+
+        final int size;
+
+        public Bag(final int size) {
+            this.size = size;
+        }
+
+        public native void printSize();
+
+        public static native void printSize(final Bag bag);
+
+        @Override
+        public String toString() {
+            return "Bag{" +
+                    "size=" + size +
+                    '}';
+        }
+    }
 }
