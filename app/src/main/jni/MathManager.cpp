@@ -197,3 +197,54 @@ Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_rooTestResidual(JNIEn
     env->DeleteLocalRef(double_class);
     return gsl_root_test_residual(f_value, epsabs_value);
 }
+
+extern "C"
+JNIEXPORT jobject JNICALL
+Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_scale__Ljava_util_List_2(JNIEnv *env, jclass, jobject values) {
+    jclass list_class = env->FindClass("java/util/List");
+    jmethodID list_get_method = env->GetMethodID(list_class, "get", "(I)Ljava/lang/Object;");
+    jmethodID list_set_method = env->GetMethodID(list_class, "set", "(ILjava/lang/Object;)Ljava/lang/Object;");
+    jmethodID list_size_method = env->GetMethodID(list_class, "size", "()I");
+
+    jclass double_class = env->FindClass("java/lang/Double");
+    jmethodID double_double_value_method = env->GetMethodID(double_class, "doubleValue", "()D");
+    jmethodID double_value_of_method = env->GetStaticMethodID(double_class, "valueOf", "(D)Ljava/lang/Double;");
+
+    jint size = env->CallIntMethod(values, list_size_method);
+
+    for (jint i = 0; i < size; i++) {
+        jobject element = env->CallObjectMethod(values, list_get_method, i);
+        if (element == nullptr) continue;
+
+        jdouble value = env->CallDoubleMethod(element, double_double_value_method);
+        jdouble calculated = value * 5.0;
+        jobject boxed = env->CallStaticObjectMethod(double_class, double_value_of_method, calculated);
+        jobject returned = env->CallObjectMethod(values, list_set_method, i, boxed);
+
+        env->DeleteLocalRef(element);
+        env->DeleteLocalRef(boxed);
+        env->DeleteLocalRef(returned);
+    }
+
+    env->DeleteLocalRef(list_class);
+    env->DeleteLocalRef(double_class);
+
+    return values;
+}
+
+extern "C"
+JNIEXPORT jdoubleArray JNICALL
+Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_scale___3D(JNIEnv *env, jclass, jdoubleArray values) {
+    jint length = env->GetArrayLength(values);
+
+    jdouble *elements = env->GetDoubleArrayElements(values, nullptr);
+    if (elements == nullptr) return values;
+
+    for (jint i = 0; i < length; i++) {
+        elements[i] *= 5.0;
+    }
+
+    env->ReleaseDoubleArrayElements(values, elements, 0);
+
+    return values;
+}

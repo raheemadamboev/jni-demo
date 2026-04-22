@@ -135,6 +135,22 @@ JNIEXPORT jdouble JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathMan
 JNIEXPORT jint JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_rooTestResidual
   (JNIEnv *, jclass, jobject, jobject);
 
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_util_manager_MathManager
+ * Method:    scale
+ * Signature: (Ljava/util/List;)Ljava/util/List;
+ */
+JNIEXPORT jobject JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_scale__Ljava_util_List_2
+  (JNIEnv *, jclass, jobject);
+
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_util_manager_MathManager
+ * Method:    scale
+ * Signature: ([D)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_scale___3D
+  (JNIEnv *, jclass, jdoubleArray);
+
 #ifdef __cplusplus
 }
 #endif

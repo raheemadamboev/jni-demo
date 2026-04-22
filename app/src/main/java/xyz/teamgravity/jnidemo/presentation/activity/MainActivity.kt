@@ -59,6 +59,9 @@ class MainActivity : ComponentActivity() {
         MathManager.bi(-1.1).log()
 
         MathManager.rooTestResidual(5.0, 2.0).log()
+
+        MathManager.scale(arrayListOf(4.0, 20.0)).log()
+        MathManager.scale(doubleArrayOf(1.0, 100.0)).toList().log()
     }
 
     private fun loanManager() {

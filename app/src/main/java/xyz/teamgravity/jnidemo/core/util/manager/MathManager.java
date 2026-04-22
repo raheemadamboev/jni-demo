@@ -1,5 +1,7 @@
 package xyz.teamgravity.jnidemo.core.util.manager;
 
+import java.util.List;
+
 import xyz.teamgravity.jnidemo.core.util.MathFunction;
 
 public class MathManager {
@@ -52,4 +54,8 @@ public class MathManager {
     public static native double bi(double x);
 
     public static native int rooTestResidual(Double f, Double epsabs);
+
+    public static native List<Double> scale(List<Double> values);
+
+    public static native double[] scale(double[] values);
 }
