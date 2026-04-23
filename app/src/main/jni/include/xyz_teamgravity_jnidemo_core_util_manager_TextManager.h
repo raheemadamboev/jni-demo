@@ -103,6 +103,22 @@ JNIEXPORT jobject JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_TextMan
 JNIEXPORT jobject JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_createPerson__Ljava_lang_String_2
   (JNIEnv *, jclass, jstring);
 
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_util_manager_TextManager
+ * Method:    print
+ * Signature: ()V;
+ */
+JNIEXPORT void JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_000241_print
+        (JNIEnv *, jobject);
+
+/*
+ * Class:     xyz_teamgravity_jnidemo_core_util_manager_TextManager
+ * Method:    print
+ * Signature: ()V;
+ */
+JNIEXPORT void JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_000242_print
+        (JNIEnv *, jobject);
+
 #ifdef __cplusplus
 }
 #endif

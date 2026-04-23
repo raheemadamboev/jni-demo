@@ -36,4 +36,18 @@ public class TextManager {
     );
 
     public static native PersonModel createPerson(final String name);
+
+    public static void testAnonymousClasses() {
+        final PersonModel person1 = new PersonModel("Arash") {
+            @Override
+            public native void print();
+        };
+        person1.print();
+
+        final PersonModel person2 = new PersonModel("T-Pain") {
+            @Override
+            public native void print();
+        };
+        person2.print();
+    }
 }

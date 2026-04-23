@@ -32,10 +32,10 @@ class MainActivity : ComponentActivity() {
 //        loanManager()
 //        overloadSample()
 //        overrideSample()
-//        textManager()
+        textManager()
 //        animalManager()
 //        fileReader()
-        person()
+//        person()
 
         setContent {
             JNIDemoTheme {
@@ -124,6 +124,8 @@ class MainActivity : ComponentActivity() {
 
         TextManager.createPerson("King Von", 26, true, 0.0).log()
         TextManager.createPerson("Lil Durk").log()
+
+        TextManager.testAnonymousClasses()
     }
 
     private fun animalManager() {

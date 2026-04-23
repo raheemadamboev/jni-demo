@@ -259,3 +259,22 @@ Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_createPerson__Ljava_l
     jobject value = env->NewObject(s_person_class, constructor, name);
     return value;
 }
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_000241_print(JNIEnv *env, jobject anonymous_obj) {
+    jclass anonymous_class = env->GetObjectClass(anonymous_obj);
+    jmethodID to_string_method = env->GetMethodID(anonymous_class, "toString", "()Ljava/lang/String;");
+    auto value = (jstring) env->CallObjectMethod(anonymous_obj, to_string_method);
+    const char *value_array = env->GetStringUTFChars(value, nullptr);
+    __android_log_print(ANDROID_LOG_DEBUG, "MainActivity", "%s", value_array);
+    env->ReleaseStringUTFChars(value, value_array);
+    env->DeleteLocalRef(value);
+    env->DeleteLocalRef(anonymous_class);
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_000242_print (JNIEnv *env, jobject anonymous_obj) {
+    Java_xyz_teamgravity_jnidemo_core_util_manager_TextManager_000241_print(env, anonymous_obj);
+}
