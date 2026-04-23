@@ -14,6 +14,7 @@ import xyz.teamgravity.jnidemo.core.sample.StringCriticalAccessSample
 import xyz.teamgravity.jnidemo.core.sample.override.Child
 import xyz.teamgravity.jnidemo.core.sample.override.Parent
 import xyz.teamgravity.jnidemo.core.util.FileReader
+import xyz.teamgravity.jnidemo.core.util.Unsafe
 import xyz.teamgravity.jnidemo.core.util.manager.AnimalManager
 import xyz.teamgravity.jnidemo.core.util.manager.LoanManager
 import xyz.teamgravity.jnidemo.core.util.manager.MathManager
@@ -39,7 +40,8 @@ class MainActivity : ComponentActivity() {
 //        fileReader()
 //        person()
 //        arrayCriticalAccessSample()
-        stringCriticalAccessSample()
+//        stringCriticalAccessSample()
+        unsafe()
 
         setContent {
             JNIDemoTheme {
@@ -203,5 +205,36 @@ class MainActivity : ComponentActivity() {
     private fun stringCriticalAccessSample() {
         StringCriticalAccessSample.printStringRegular("Hello")
         StringCriticalAccessSample.printStringCritical("My name is Raheem!")
+    }
+
+    private fun unsafe() {
+        val INT_OFFSET = 4
+        val DOUBLE_OFFSET = 8
+
+        val originalAddress = Unsafe.allocateMemory(24)
+        var address = originalAddress
+        originalAddress.toHexString().log()
+
+        Unsafe.putInt(address, 89719)
+        val value1 = Unsafe.getInt(address)
+        value1.log()
+        address += INT_OFFSET
+
+        Unsafe.putDouble(address, -78.78)
+        val value2 = Unsafe.getDouble(address)
+        value2.log()
+        address += DOUBLE_OFFSET
+
+        Unsafe.putInt(address, 777)
+        val value3 = Unsafe.getInt(address)
+        value3.log()
+        address += INT_OFFSET
+
+        Unsafe.putDouble(address, 89.89)
+        val value4 = Unsafe.getDouble(address)
+        value4.log()
+        address += DOUBLE_OFFSET
+
+        Unsafe.freeMemory(originalAddress)
     }
 }
