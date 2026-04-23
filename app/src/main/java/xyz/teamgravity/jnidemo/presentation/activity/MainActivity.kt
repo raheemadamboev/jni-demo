@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import xyz.teamgravity.jnidemo.core.extension.log
 import xyz.teamgravity.jnidemo.core.sample.ArrayCriticalAccessSample
 import xyz.teamgravity.jnidemo.core.sample.OverloadSample
+import xyz.teamgravity.jnidemo.core.sample.StringCriticalAccessSample
 import xyz.teamgravity.jnidemo.core.sample.override.Child
 import xyz.teamgravity.jnidemo.core.sample.override.Parent
 import xyz.teamgravity.jnidemo.core.util.FileReader
@@ -37,7 +38,8 @@ class MainActivity : ComponentActivity() {
 //        animalManager()
 //        fileReader()
 //        person()
-        arrayCriticalAccessSample()
+//        arrayCriticalAccessSample()
+        stringCriticalAccessSample()
 
         setContent {
             JNIDemoTheme {
@@ -196,5 +198,10 @@ class MainActivity : ComponentActivity() {
         array.toList().log()
         ArrayCriticalAccessSample.addCritical(array, 8.0)
         array.toList().log()
+    }
+
+    private fun stringCriticalAccessSample() {
+        StringCriticalAccessSample.printStringRegular("Hello")
+        StringCriticalAccessSample.printStringCritical("My name is Raheem!")
     }
 }
