@@ -180,5 +180,7 @@ class MainActivity : ComponentActivity() {
 
         PersonModel.Book.createBook(person).log()
         PersonModel.Bag.createBag().log()
+
+        PersonModel.test()
     }
 }

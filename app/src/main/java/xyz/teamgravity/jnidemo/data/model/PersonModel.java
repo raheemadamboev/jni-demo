@@ -55,6 +55,39 @@ public class PersonModel {
         person.debt = 10000.0;
     }
 
+    public static void test() {
+        class Student {
+
+            static {
+                System.loadLibrary("person_model_student");
+            }
+
+            private final String name;
+            private final int age;
+
+            public Student(
+                    final String name,
+                    final int age
+            ) {
+                this.name = name;
+                this.age = age;
+            }
+
+            @Override
+            public String toString() {
+                return "Student{" +
+                        "name='" + name + '\'' +
+                        ", age=" + age +
+                        '}';
+            }
+
+            public native void print();
+        }
+
+        new Student("Smart", 50).print();
+        new Student("Dumb", 3).print();
+    }
+
     @Override
     public String toString() {
         return "PersonModel{" +
