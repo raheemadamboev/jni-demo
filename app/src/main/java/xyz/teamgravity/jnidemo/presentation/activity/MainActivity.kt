@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import xyz.teamgravity.jnidemo.core.extension.log
+import xyz.teamgravity.jnidemo.core.sample.ArrayCriticalAccessSample
 import xyz.teamgravity.jnidemo.core.sample.OverloadSample
 import xyz.teamgravity.jnidemo.core.sample.override.Child
 import xyz.teamgravity.jnidemo.core.sample.override.Parent
@@ -32,10 +33,11 @@ class MainActivity : ComponentActivity() {
 //        loanManager()
 //        overloadSample()
 //        overrideSample()
-        textManager()
+//        textManager()
 //        animalManager()
 //        fileReader()
 //        person()
+        arrayCriticalAccessSample()
 
         setContent {
             JNIDemoTheme {
@@ -184,5 +186,15 @@ class MainActivity : ComponentActivity() {
         PersonModel.Bag.createBag().log()
 
         PersonModel.test()
+    }
+
+    private fun arrayCriticalAccessSample() {
+        val array = doubleArrayOf(5.0, 2.0, 3.0)
+        ArrayCriticalAccessSample.addRegion(array, 7.0)
+        array.toList().log()
+        ArrayCriticalAccessSample.addElements(array, 15.0)
+        array.toList().log()
+        ArrayCriticalAccessSample.addCritical(array, 8.0)
+        array.toList().log()
     }
 }

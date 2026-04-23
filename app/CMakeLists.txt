@@ -23,6 +23,7 @@ add_library(file_reader SHARED src/main/jni/FileReader.cpp)
 add_library(person_model_book SHARED src/main/jni/PersonModelBook.cpp)
 add_library(person_model_bag SHARED src/main/jni/PersonModelBag.cpp)
 add_library(person_model_student SHARED src/main/jni/PersonModelStudent.cpp)
+add_library(array_critical_access_sample SHARED src/main/jni/ArrayCriticalAccessSample.cpp)
 
 target_include_directories(math_manager PRIVATE src/main/jni/include ${GSL_DIR}/include)
 target_include_directories(loan_manager PRIVATE src/main/jni/include)
@@ -35,6 +36,7 @@ target_include_directories(file_reader PRIVATE src/main/jni/include)
 target_include_directories(person_model_book PRIVATE src/main/jni/include)
 target_include_directories(person_model_bag PRIVATE src/main/jni/include)
 target_include_directories(person_model_student PRIVATE src/main/jni/include)
+target_include_directories(array_critical_access_sample PRIVATE src/main/jni/include)
 
 find_library(log-lib log)
 
