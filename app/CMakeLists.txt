@@ -27,6 +27,7 @@ add_library(array_critical_access_sample SHARED src/main/jni/ArrayCriticalAccess
 add_library(string_critical_access_sample SHARED src/main/jni/StringCriticalAccessSample.cpp)
 add_library(unsafe SHARED src/main/jni/Unsafe.cpp)
 add_library(register_natives_sample SHARED src/main/jni/RegisterNativesSample.cpp)
+add_library(people_model SHARED src/main/jni/PeopleModel.cpp)
 
 target_include_directories(math_manager PRIVATE src/main/jni/include ${GSL_DIR}/include)
 target_include_directories(loan_manager PRIVATE src/main/jni/include)
@@ -42,6 +43,7 @@ target_include_directories(person_model_student PRIVATE src/main/jni/include)
 target_include_directories(array_critical_access_sample PRIVATE src/main/jni/include)
 target_include_directories(string_critical_access_sample PRIVATE src/main/jni/include)
 target_include_directories(unsafe PRIVATE src/main/jni/include)
+target_include_directories(people_model PRIVATE src/main/jni/include)
 
 find_library(log-lib log)
 

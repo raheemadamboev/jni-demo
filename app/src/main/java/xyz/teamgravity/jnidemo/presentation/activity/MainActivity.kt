@@ -23,6 +23,7 @@ import xyz.teamgravity.jnidemo.core.util.manager.TextManager
 import xyz.teamgravity.jnidemo.data.model.AnimalModel
 import xyz.teamgravity.jnidemo.data.model.CatModel
 import xyz.teamgravity.jnidemo.data.model.DogModel
+import xyz.teamgravity.jnidemo.data.model.PeopleModel
 import xyz.teamgravity.jnidemo.data.model.PersonModel
 import xyz.teamgravity.jnidemo.presentation.theme.JNIDemoTheme
 import java.io.File
@@ -43,7 +44,8 @@ class MainActivity : ComponentActivity() {
 //        arrayCriticalAccessSample()
 //        stringCriticalAccessSample()
 //        unsafe()
-        registerNativesSample()
+//        registerNativesSample()
+        peopleModel()
 
         setContent {
             JNIDemoTheme {
@@ -243,5 +245,13 @@ class MainActivity : ComponentActivity() {
     private fun registerNativesSample() {
         RegisterNativesSample.doubleValue(78).log()
         RegisterNativesSample().sayHi().log()
+    }
+
+    private fun peopleModel() {
+        val people = PeopleModel.allocate("Raheem", 21)
+        people.sayHi()
+        people.name.log()
+        people.age.log()
+        PeopleModel.free(people)
     }
 }
