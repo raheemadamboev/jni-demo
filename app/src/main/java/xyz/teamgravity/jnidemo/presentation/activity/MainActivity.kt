@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import xyz.teamgravity.jnidemo.core.extension.log
 import xyz.teamgravity.jnidemo.core.sample.ArrayCriticalAccessSample
 import xyz.teamgravity.jnidemo.core.sample.OverloadSample
+import xyz.teamgravity.jnidemo.core.sample.RegisterNativesSample
 import xyz.teamgravity.jnidemo.core.sample.StringCriticalAccessSample
 import xyz.teamgravity.jnidemo.core.sample.override.Child
 import xyz.teamgravity.jnidemo.core.sample.override.Parent
@@ -41,7 +42,8 @@ class MainActivity : ComponentActivity() {
 //        person()
 //        arrayCriticalAccessSample()
 //        stringCriticalAccessSample()
-        unsafe()
+//        unsafe()
+        registerNativesSample()
 
         setContent {
             JNIDemoTheme {
@@ -236,5 +238,10 @@ class MainActivity : ComponentActivity() {
         address += DOUBLE_OFFSET
 
         Unsafe.freeMemory(originalAddress)
+    }
+
+    private fun registerNativesSample() {
+        RegisterNativesSample.doubleValue(78).log()
+        RegisterNativesSample().sayHi().log()
     }
 }
