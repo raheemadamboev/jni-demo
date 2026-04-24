@@ -31,6 +31,7 @@ JNI_OnLoad(JavaVM *vm, void *) {
     jint result = env->RegisterNatives(register_natives_sample_class, methods, sizeof(methods) / sizeof(methods[0]));
     if (result != JNI_OK) {
         __android_log_print(ANDROID_LOG_ERROR, "MainActivity", "JNI_OnLoad(): failed to register native methods.");
+        env->DeleteLocalRef(register_natives_sample_class);
         return JNI_ERR;
     }
 
