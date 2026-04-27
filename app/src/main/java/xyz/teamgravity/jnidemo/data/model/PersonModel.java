@@ -11,6 +11,10 @@ public class PersonModel {
     private static double BUDGET = 500.0;
 
     public PersonModel(String name, int age, boolean isMarried, double debt) {
+        if (age < 0) {
+            throw new IllegalArgumentException("Age can't be negative!");
+        }
+
         this.name = name;
         this.age = age;
         this.isMarried = isMarried;

@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
 //        loanManager()
 //        overloadSample()
 //        overrideSample()
-//        textManager()
+        textManager()
 //        animalManager()
 //        fileReader()
 //        person()
@@ -45,7 +45,7 @@ class MainActivity : ComponentActivity() {
 //        stringCriticalAccessSample()
 //        unsafe()
 //        registerNativesSample()
-        peopleModel()
+//        peopleModel()
 
         setContent {
             JNIDemoTheme {
@@ -132,7 +132,7 @@ class MainActivity : ComponentActivity() {
         TextManager.evaluate(person)
         TextManager.freeMemory().log()
 
-        TextManager.createPerson("King Von", 26, true, 0.0).log()
+        TextManager.createPerson("King Von", -1, true, 0.0).log()
         TextManager.createPerson("Lil Durk").log()
 
         TextManager.testAnonymousClasses()
