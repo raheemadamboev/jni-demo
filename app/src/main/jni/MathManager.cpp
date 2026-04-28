@@ -27,73 +27,111 @@ Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_isOdd(JNIEnv *, jobje
 extern "C"
 JNIEXPORT jfloat JNICALL
 Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_damage(JNIEnv *, jobject, jlong a) {
-    jfloat result = a * 1.3f;
+    auto result = static_cast<jfloat>(static_cast<jdouble>(a) * 1.3);
     return result;
 }
 
 extern "C"
 JNIEXPORT jdoubleArray JNICALL
 Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_linearSpace(JNIEnv *env, jobject, jdouble start, jdouble end, jint number) {
-    auto *c_array = new jdouble[number];
+    if (number <= 0) {
+        jclass exception = env->FindClass("java/lang/IllegalArgumentException");
+        if (exception != nullptr) env->ThrowNew(exception, "number must be positive!");
+        return nullptr;
+    }
+
+    jdoubleArray result = env->NewDoubleArray(number);
+    if (result == nullptr) return nullptr;
+
+    if (number == 1) {
+        env->SetDoubleArrayRegion(result, 0, 1, &start);
+        return result;
+    }
+
+    auto *c_array = static_cast<jdouble *>(env->GetPrimitiveArrayCritical(result, nullptr));
+    if (c_array == nullptr) return nullptr;
+
     jdouble dx = (end - start) / (number - 1.0);
     for (jint i = 0; i < number; i++) {
         c_array[i] = start + (i * dx);
     }
 
-    jdoubleArray result = env->NewDoubleArray(number);
-    env->SetDoubleArrayRegion(result, 0, number, c_array);
-
-    delete[] c_array;
-
+    env->ReleasePrimitiveArrayCritical(result, c_array, 0);
     return result;
 }
 
 extern "C"
 JNIEXPORT jdouble JNICALL
 Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_sum(JNIEnv *env, jobject, jdoubleArray values) {
+    if (values == nullptr) return 0.0;
+
     jint length = env->GetArrayLength(values);
-    jdouble c_array[length];
-    env->GetDoubleArrayRegion(values, 0, length, c_array);
+    auto *c_array = static_cast<jdouble *>(env->GetPrimitiveArrayCritical(values, nullptr));
+    if (c_array == nullptr) return 0.0;
 
     jdouble sum = 0.0;
     for (jint i = 0; i < length; i++) {
         sum += c_array[i];
     }
 
+    env->ReleasePrimitiveArrayCritical(values, c_array, JNI_ABORT);
     return sum;
 }
 
 extern "C"
 JNIEXPORT jdoubleArray JNICALL
-Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_squareOf(JNIEnv *env, jobject, jdoubleArray values) {
+Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_square(JNIEnv *env, jobject, jdoubleArray values) {
+    if (values == nullptr) {
+        jclass exception = env->FindClass("java/lang/NullPointerException");
+        if (exception != nullptr) env->ThrowNew(exception, "values can't be null!");
+        return nullptr;
+    }
+
     jint length = env->GetArrayLength(values);
-    jdouble c_array[length];
-    env->GetDoubleArrayRegion(values, 0, length, c_array);
+    auto *c_array = static_cast<jdouble *>(env->GetPrimitiveArrayCritical(values, nullptr));
+    if (c_array == nullptr) return nullptr;
 
     for (jint i = 0; i < length; i++) {
         c_array[i] *= c_array[i];
     }
 
-    jdoubleArray result = env->NewDoubleArray(length);
-    env->SetDoubleArrayRegion(result, 0, length, c_array);
-
-    return result;
+    env->ReleasePrimitiveArrayCritical(values, c_array, 0);
+    return values;
 }
 
 extern "C"
 JNIEXPORT jobjectArray JNICALL
 Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_ones__II(JNIEnv *env, jobject, jint rows, jint columns) {
-    jclass object_class = env->FindClass("[D");
-    jobjectArray object_array = env->NewObjectArray(rows, object_class, nullptr);
+    if (rows < 0 || columns < 0) {
+        jclass exception = env->FindClass("java/lang/IllegalArgumentException");
+        if (exception != nullptr) env->ThrowNew(exception, "rows and columns must be non-negative!");
+        return nullptr;
+    }
+
+    jclass double_array_class = env->FindClass("[D");
+    if (double_array_class == nullptr) return nullptr;
+
+    jobjectArray object_array = env->NewObjectArray(rows, double_array_class, nullptr);
+    if (object_array == nullptr) return nullptr;
 
     for (jint rowIndex = 0; rowIndex < rows; rowIndex++) {
-        jdoubleArray columns_array = env->NewDoubleArray(columns);
-        jdouble c_array[columns];
+        jdoubleArray row = env->NewDoubleArray(columns);
+        if (row == nullptr) return nullptr;
+
+        auto *c_array = static_cast<jdouble *>(env->GetPrimitiveArrayCritical(row, nullptr));
+        if (c_array == nullptr) {
+            env->DeleteLocalRef(row);
+            return nullptr;
+        }
+
         for (jint columnIndex = 0; columnIndex < columns; columnIndex++) {
             c_array[columnIndex] = 1.0;
         }
-        env->SetDoubleArrayRegion(columns_array, 0, columns, c_array);
-        env->SetObjectArrayElement(object_array, rowIndex, columns_array);
+
+        env->ReleasePrimitiveArrayCritical(row, c_array, 0);
+
+        env->SetObjectArrayElement(object_array, rowIndex, row);
+        env->DeleteLocalRef(row);
     }
 
     return object_array;
@@ -118,31 +156,30 @@ Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_max(JNIEnv *env, jobj
     }
 
     jdouble max = -std::numeric_limits<jdouble>::infinity();
+    bool found_any = false;
 
     for (jint row_index = 0; row_index < row_length; row_index++) {
-        auto column_array = (jdoubleArray) (env->GetObjectArrayElement(values, row_index));
+        auto column_array = reinterpret_cast<jdoubleArray>(env->GetObjectArrayElement(values, row_index));
         if (column_array == nullptr) continue;
 
         jint column_length = env->GetArrayLength(column_array);
         if (column_length > 0) {
-
-            jdouble *elements = env->GetDoubleArrayElements(column_array, nullptr);
+            auto *elements = static_cast<jdouble *>(env->GetPrimitiveArrayCritical(column_array, nullptr));
             if (elements != nullptr) {
-
                 for (jint column_index = 0; column_index < column_length; column_index++) {
                     if (max < elements[column_index]) {
                         max = elements[column_index];
                     }
                 }
-
-                env->ReleaseDoubleArrayElements(column_array, elements, JNI_ABORT);
+                found_any = true;
+                env->ReleasePrimitiveArrayCritical(column_array, elements, JNI_ABORT);
             }
         }
 
         env->DeleteLocalRef(column_array);
     }
 
-    return max;
+    return found_any ? max : std::numeric_limits<jdouble>::quiet_NaN();
 }
 
 extern "C"

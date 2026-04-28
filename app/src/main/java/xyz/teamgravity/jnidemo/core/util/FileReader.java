@@ -8,7 +8,8 @@ public class FileReader implements AutoCloseable {
     }
 
     public String file;
-    private boolean isClosed = false;
+    private long handle;
+    private volatile boolean isClosed = false;
 
     public FileReader(final String file) {
         this.file = file;

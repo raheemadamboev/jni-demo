@@ -60,7 +60,7 @@ JNIEXPORT jdouble JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathMan
  * Method:    squareOf
  * Signature: ([D)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_squareOf
+JNIEXPORT jdoubleArray JNICALL Java_xyz_teamgravity_jnidemo_core_util_manager_MathManager_square
   (JNIEnv *, jobject, jdoubleArray);
 
 /*
